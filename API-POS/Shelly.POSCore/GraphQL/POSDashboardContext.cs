@@ -19,7 +19,7 @@ namespace Shelly.POSCore.GraphQL
                return new Schema
                {
                     Query = new Shelly.POSCore.GraphQL.Query.Dashboard.Queries((DashBoardSystem)_System),
-                    //Mutation = new Shelly.POSCore.GraphQL.Mutation.Dashboard.Mutations((DashBoardSystem)_System)
+                    Mutation = new Shelly.POSCore.GraphQL.Mutation.Dashboard.Mutations((DashBoardSystem)_System)
                };
           }
      }

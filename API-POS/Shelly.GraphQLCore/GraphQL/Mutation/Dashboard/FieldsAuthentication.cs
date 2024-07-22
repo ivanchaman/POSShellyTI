@@ -1,6 +1,6 @@
 ﻿namespace Shelly.GraphQLCore.GraphQL.Mutation.Dashboard
 {
-     internal partial class Mutations
+     public partial class Mutations
      {
           public void FieldsAuthentication()
           {

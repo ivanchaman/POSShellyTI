@@ -14,7 +14,6 @@
 
   <ItemGroup>
     <Folder Include="GraphQL\InputTypes\" />
-    <Folder Include="GraphQL\Mutation\Dashboard\" />
     <Folder Include="GraphQL\Resolvers\" />
     <Folder Include="Interface\" />
   </ItemGroup>

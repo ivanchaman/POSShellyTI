@@ -1,21 +1,22 @@
 ﻿
 namespace Shelly.POSCore.GraphQL.Types
 {
-	public class  POSCategoriesType : ObjectGraphType<Categories>	{
-
-	public POSCategoriesType()
+	public class POSCategoriesType : ObjectGraphType<Categories>
 	{
 
-		Name = "POSCategoriesType";
-		#region Fields
+		public POSCategoriesType()
+		{
+
+			Name = "POSCategoriesType";
+			#region Fields
 
 			Field(f => f.Id);
-			Field(f => f.CompanyId);
+			Field(f => f.Company);
 			Field(f => f.Name);
 			Field(f => f.Description);
 			Field(f => f.CreatedAt);
-		#endregion
+			#endregion
 
-	}
+		}
 	}
 }

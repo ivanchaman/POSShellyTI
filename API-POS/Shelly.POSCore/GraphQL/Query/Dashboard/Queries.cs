@@ -6,6 +6,7 @@
           public Queries(DashBoardSystem system) : base(system)
           {
                FieldsPOS();
+               FieldsClinical();
           }
      }
 }

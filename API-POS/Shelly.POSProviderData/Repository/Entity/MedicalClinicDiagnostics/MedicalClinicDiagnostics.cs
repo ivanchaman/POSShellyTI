@@ -320,7 +320,7 @@ namespace Shelly.POSProviderData.Repository.Entity
 			set => SetPropertyValue<string>("EDAS_E_IRAS_EN_M5", value);
 		}
 		[ColumnName("CVE_MATERNAS-SEED-EPID")]
-		public string CVE_MATERNAS-SEED-EPID
+		public string CVE_MATERNAS_SEED_EPID
 		{
 			get => GetPropertyValue<string>("CVE_MATERNAS-SEED-EPID");
 			set => SetPropertyValue<string>("CVE_MATERNAS-SEED-EPID", value);
