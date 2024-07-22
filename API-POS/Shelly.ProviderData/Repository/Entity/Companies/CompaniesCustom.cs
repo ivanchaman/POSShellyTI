@@ -109,7 +109,7 @@
 				company.New();
 				company.UserNumber = 0;
 				company.Company = Id;
-				company.CurrencyCode = "484";
+				company.CurrencyId = 484;
 				company.Save();
 				ConnectionHandler.CommitTransaction();
 			}

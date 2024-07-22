@@ -3,20 +3,20 @@ using Shelly.ProviderData.Helper;
 
 namespace Shelly.ProviderData.Repository.Entity
 {
-    /// <summary>
-    /// Class CompaniesUsers 
-    /// </summary>
-    [Serializable]
-	public partial class CompaniesUsers:StaticEntity
+	/// <summary>
+	/// Class CompaniesUsers 
+	/// </summary>
+	[Serializable]
+	public partial class CompaniesUsers : StaticEntity
 	{
 		#region Contructor
 		/// <summary>
 		///  Initializes a new instance of the <see cref="CompaniesUsers"/> class..
 		/// </summary>
-		public CompaniesUsers():base()
+		public CompaniesUsers() : base()
 		{
 			Table = "Users";
-			Owner= "Company";
+			Owner = "Company";
 			LoadColumnProperties();
 
 		}
@@ -24,10 +24,10 @@ namespace Shelly.ProviderData.Repository.Entity
 		///  Initializes a new instance of the <see cref="CompaniesUsers"/> class..
 		/// </summary>
 		/// <param name="IBaseSystem">base system</param>
-		public CompaniesUsers(IBaseSystem IBaseSystem):base (IBaseSystem)
+		public CompaniesUsers(IBaseSystem IBaseSystem) : base(IBaseSystem)
 		{
 			Table = "Users";
-			Owner= "Company";
+			Owner = "Company";
 			LoadColumnProperties();
 
 		}
@@ -51,11 +51,11 @@ namespace Shelly.ProviderData.Repository.Entity
 			get => GetPropertyValue<long>("UserNumber");
 			set => SetPropertyValue<long>("UserNumber", value);
 		}
-		[ColumnName("CurrencyCode")]
-		public string CurrencyCode
+		[ColumnName("CurrencyId")]
+		public int CurrencyId
 		{
-			get => GetPropertyValue<string>("CurrencyCode");
-			set => SetPropertyValue<string>("CurrencyCode", value);
+			get => GetPropertyValue<int>("CurrencyId");
+			set => SetPropertyValue<int>("CurrencyId", value);
 		}
 		#endregion
 		#region Funciones
@@ -71,59 +71,63 @@ namespace Shelly.ProviderData.Repository.Entity
 		/// </summary>
 		protected override void LoadColumnProperties()
 		{
-			if (!Object.Equals(KeyFields,null) && !Object.Equals(Properties,null)) 
-			  return;
+			if (!Object.Equals(KeyFields, null) && !Object.Equals(Properties, null))
+				return;
 
-			KeyFields= new Dictionary<string,object>(1);
+			KeyFields = new Dictionary<string, object>(1);
 			Properties = new Dictionary<string, Property>(4);
 
-			 AddKeyField("Id",null);
-			 AddProperty<long>("Id", new PropertyValue<long> {
-			 Value = default,
-			 IsPrimaryKey = true,
-			 Length = 8,
-			 Precision = 19,
-			 IsRequiredInDataBase = true,
-			 FieldId = 0,
-			 Description = "No description Id",
-			 IsIdentity = true,
-			 DataType = typeof(long)
+			AddKeyField("Id", null);
+			AddProperty<long>("Id", new PropertyValue<long>
+			{
+				Value = default,
+				IsPrimaryKey = true,
+				Length = 8,
+				Precision = 19,
+				IsRequiredInDataBase = true,
+				FieldId = 0,
+				Description = "No description Id",
+				IsIdentity = true,
+				DataType = typeof(long)
 			});
-			 AddProperty<long>("Company", new PropertyValue<long> {
-			 Value = default,
-			 IsPrimaryKey = false,
-			 Length = 8,
-			 Precision = 19,
-			 IsRequiredInDataBase = true,
-			 FieldId = 1,
-			 Description = "No description Company",
-			 IsIdentity = false,
-			 DataType = typeof(long)
+			AddProperty<long>("Company", new PropertyValue<long>
+			{
+				Value = default,
+				IsPrimaryKey = false,
+				Length = 8,
+				Precision = 19,
+				IsRequiredInDataBase = true,
+				FieldId = 1,
+				Description = "No description Company",
+				IsIdentity = false,
+				DataType = typeof(long)
 			});
-			 AddProperty<long>("UserNumber", new PropertyValue<long> {
-			 Value = default,
-			 IsPrimaryKey = false,
-			 Length = 8,
-			 Precision = 19,
-			 IsRequiredInDataBase = true,
-			 FieldId = 2,
-			 Description = "No description UserNumber",
-			 IsIdentity = false,
-			 DataType = typeof(long)
+			AddProperty<long>("UserNumber", new PropertyValue<long>
+			{
+				Value = default,
+				IsPrimaryKey = false,
+				Length = 8,
+				Precision = 19,
+				IsRequiredInDataBase = true,
+				FieldId = 2,
+				Description = "No description UserNumber",
+				IsIdentity = false,
+				DataType = typeof(long)
 			});
-			 AddProperty<string>("CurrencyCode", new PropertyValue<string> {
-			 Value = String.Empty,
-			 IsPrimaryKey = false,
-			 Length = 10,
-			 Precision = 0,
-			 IsRequiredInDataBase = true,
-			 FieldId = 3,
-			 Description = "No description CurrencyCode",
-			 IsIdentity = false,
-			 DataType = typeof(string)
+			AddProperty<int>("CurrencyId", new PropertyValue<int>
+			{
+				Value = 484,
+				IsPrimaryKey = false,
+				Length = 10,
+				Precision = 0,
+				IsRequiredInDataBase = true,
+				FieldId = 3,
+				Description = "No description CurrencyId",
+				IsIdentity = false,
+				DataType = typeof(int)
 			});
-			}
-			#endregion
-
 		}
+		#endregion
+
 	}
+}

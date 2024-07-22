@@ -24,7 +24,7 @@ namespace Shelly.GraphQLCore.Configuration
           }
           protected override void LoadUser(string user)
           {
-               User.Load(x => (x.UserName == user || x.Email == user) && x.UserTypeId == 0);
+               User.Load(x => (x.UserName == user || x.Email == user) && x.UserTypeId != 2);
                if (User.EOF)
                     throw new CoreException(Errors.E00000005);
           }

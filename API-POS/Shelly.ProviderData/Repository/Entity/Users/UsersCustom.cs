@@ -177,7 +177,7 @@ namespace Shelly.ProviderData.Repository.Entity
 				company.New();
 				company.UserNumber = Id;
 				company.Company = data.Company;
-				company.CurrencyCode = $"484";
+				company.CurrencyId = 484;
 				company.Save();
 				ConnectionHandler.CommitTransaction();
 			}

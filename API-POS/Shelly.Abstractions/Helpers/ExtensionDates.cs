@@ -86,7 +86,7 @@ namespace Shelly.Abstractions.Helpers
                {
                     return GetNameMonth((MonthType)month);
                }
-               return GetNameMonth(MonthType.Other);
+               return GetNameMonth(MonthType.Closing);
           }
 
           /// <summary>

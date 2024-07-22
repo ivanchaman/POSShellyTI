@@ -12,7 +12,7 @@
 			Field(f => f.Id);
 			Field(f => f.Company);
 			Field(f => f.UserNumber);
-			Field(f => f.CurrencyCode);
+			Field(f => f.CurrencyId);
 			#endregion
 
 		}
