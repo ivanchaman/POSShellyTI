@@ -34,7 +34,7 @@ namespace Shelly.GraphQLCore.Services
                {
                     if (file == null || file.Length == 0)
                     {
-                         return new GenericResponse((DataAccess)_context, "E00000006");
+                         return new GenericResponse(GetDataAccess(), "E00000006");
                     }
                     using (Stream stream = file.OpenReadStream())
                     {
@@ -46,7 +46,7 @@ namespace Shelly.GraphQLCore.Services
                }
                catch(CoreException cx)
                {
-                    return new GenericResponse((DataAccess)_context, cx.ErrorId);
+                    return new GenericResponse(GetDataAccess(), cx.ErrorId);
                }
                catch(Exception ex)
                {
