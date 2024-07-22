@@ -108,6 +108,7 @@ namespace Shelly.POSProviderData.Repository.Entity
 			 FieldId = 1,
 			 Description = "No description Company",
 			 IsIdentity = false,
+			 IsCompanyField = true,
 			 DataType = typeof(long)
 			});
 			 AddProperty<string>("Name", new PropertyValue<string> {

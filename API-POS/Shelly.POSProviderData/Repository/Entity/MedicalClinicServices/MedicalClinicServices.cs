@@ -5,16 +5,16 @@ namespace Shelly.POSProviderData.Repository.Entity
 	/// Class Services 
 	/// </summary>
 	[Serializable]
-	public partial class Services : StaticEntity
+	public partial class Services:StaticEntity
 	{
 		#region Contructor
 		/// <summary>
 		///  Initializes a new instance of the <see cref="Services"/> class..
 		/// </summary>
-		public Services() : base()
+		public Services():base()
 		{
 			Table = "Services";
-			Owner = "MedicalClinic";
+			Owner= "MedicalClinic";
 			LoadColumnProperties();
 
 		}
@@ -22,10 +22,10 @@ namespace Shelly.POSProviderData.Repository.Entity
 		///  Initializes a new instance of the <see cref="Services"/> class..
 		/// </summary>
 		/// <param name="IBaseSystem">base system</param>
-		public Services(IBaseSystem IBaseSystem) : base(IBaseSystem)
+		public Services(IBaseSystem IBaseSystem):base (IBaseSystem)
 		{
 			Table = "Services";
-			Owner = "MedicalClinic";
+			Owner= "MedicalClinic";
 			LoadColumnProperties();
 
 		}
@@ -75,76 +75,72 @@ namespace Shelly.POSProviderData.Repository.Entity
 		/// </summary>
 		protected override void LoadColumnProperties()
 		{
-			if (!Object.Equals(KeyFields, null) && !Object.Equals(Properties, null))
-				return;
+			if (!Object.Equals(KeyFields,null) && !Object.Equals(Properties,null)) 
+			  return;
 
-			KeyFields = new Dictionary<string, object>(1);
+			KeyFields= new Dictionary<string,object>(1);
 			Properties = new Dictionary<string, Property>(5);
 
-			AddKeyField("Id", null);
-			AddProperty<long>("Id", new PropertyValue<long>
-			{
-				Value = default,
-				IsPrimaryKey = true,
-				Length = 8,
-				Precision = 19,
-				IsRequiredInDataBase = true,
-				FieldId = 0,
-				Description = "No description Id",
-				IsIdentity = false,
-				DataType = typeof(long)
+			 AddKeyField("Id",null);
+			 AddProperty<long>("Id", new PropertyValue<long> {
+			 Value = default,
+			 IsPrimaryKey = true,
+			 Length = 8,
+			 Precision = 19,
+			 IsRequiredInDataBase = true,
+			 FieldId = 0,
+			 Description = "No description Id",
+			 IsIdentity = false,
+			 DataType = typeof(long)
 			});
-			AddProperty<long>("Company", new PropertyValue<long>
-			{
-				Value = default,
-				IsPrimaryKey = false,
-				Length = 8,
-				Precision = 19,
-				IsRequiredInDataBase = true,
-				FieldId = 1,
-				Description = "No description Company",
-				IsIdentity = false,
-				DataType = typeof(long)
+			 AddProperty<long>("Company", new PropertyValue<long> {
+			 Value = default,
+			 IsPrimaryKey = false,
+			 Length = 8,
+			 Precision = 19,
+			 IsRequiredInDataBase = true,
+			 FieldId = 1,
+			 Description = "No description Company",
+			 IsIdentity = false,
+			 IsCompanyField = true,
+			 DataType = typeof(long)
 			});
-			AddProperty<long>("ProductId", new PropertyValue<long>
-			{
-				Value = default,
-				IsPrimaryKey = false,
-				Length = 8,
-				Precision = 19,
-				IsRequiredInDataBase = true,
-				FieldId = 2,
-				Description = "No description ProductId",
-				IsIdentity = false,
-				DataType = typeof(long)
+			 AddProperty<long>("ProductId", new PropertyValue<long> {
+			 Value = default,
+			 IsPrimaryKey = false,
+			 Length = 8,
+			 Precision = 19,
+			 IsRequiredInDataBase = true,
+			 FieldId = 2,
+			 Description = "No description ProductId",
+			 IsIdentity = false,
+			 DataType = typeof(long)
 			});
-			AddProperty<int>("Time", new PropertyValue<int>
-			{
-				Value = default,
-				IsPrimaryKey = false,
-				Length = 4,
-				Precision = 10,
-				IsRequiredInDataBase = true,
-				FieldId = 3,
-				Description = "No description Time",
-				IsIdentity = false,
-				DataType = typeof(int)
+			 AddProperty<int>("Time", new PropertyValue<int> {
+			 Value = default,
+			 IsPrimaryKey = false,
+			 Length = 4,
+			 Precision = 10,
+			 IsRequiredInDataBase = true,
+			 FieldId = 3,
+			 Description = "No description Time",
+			 IsIdentity = false,
+			 DataType = typeof(int)
 			});
-			AddProperty<DateTime>("CreatedAt", new PropertyValue<DateTime>
-			{
-				Value = DefaultDateTime,
-				IsIncludeHours = true,
-				IsPrimaryKey = false,
-				Length = 8,
-				Precision = 23,
-				IsRequiredInDataBase = true,
-				FieldId = 4,
-				Description = "No description CreatedAt",
-				IsIdentity = false,
-				DataType = typeof(DateTime)
+			 AddProperty<DateTime>("CreatedAt", new PropertyValue<DateTime> {
+			 Value = DefaultDateTime,
+			 IsIncludeHours = true,
+			 IsPrimaryKey = false,
+			 Length = 8,
+			 Precision = 23,
+			 IsRequiredInDataBase = true,
+			 FieldId = 4,
+			 Description = "No description CreatedAt",
+			 IsIdentity = false,
+			 DataType = typeof(DateTime)
 			});
-		}
-		#endregion
+			}
+			#endregion
 
+		}
 	}
-}

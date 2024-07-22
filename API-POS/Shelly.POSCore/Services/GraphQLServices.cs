@@ -1,4 +1,7 @@
 ﻿
+using Shelly.GraphQLCore.Configuration;
+using Shelly.POSCore.GraphQL;
+
 namespace Shelly.POSCore.Services
 {
      internal class GraphQLServices : IGraphQLServices
@@ -24,7 +27,7 @@ namespace Shelly.POSCore.Services
                     AccountSystem system = new AccountSystem(_dbContext.GetDataAccess(), _dbCache, _section);
                     system.Session.User.Uuid = "0000000000000000000000000000000";
                     using ConnectionHandler manager = new ConnectionHandler(system.Connection);
-                    EvedFoodContext schema = new EvedFoodContext(system, false);
+                    POSAccountsContext schema = new POSAccountsContext(system, false);
                     return await schema.ExecutionResult(query);
                }
                catch (Exception ex)
@@ -44,7 +47,7 @@ namespace Shelly.POSCore.Services
                     system.LogIn(loginInfo.UserNumber, loginInfo.Company);
                     system.InfoSessionToken = loginInfo;
                     using ConnectionHandler manager = new ConnectionHandler(system.Connection);
-                    EvedFoodContext schema = new EvedFoodContext(system, true);
+                    POSAccountsContext schema = new POSAccountsContext(system, true);
                     return await schema.ExecutionResult(query);
                }
                catch (Exception ex)
@@ -53,14 +56,43 @@ namespace Shelly.POSCore.Services
                }
           }
 
-          public Task<GenericResponse> ExecutionResultDashboardSchemaWithoutSession()
+          public async Task<GenericResponse> ExecutionResultDashboardSchemaWithoutSession()
           {
-               throw new NotImplementedException();
+               try
+               {
+                    Validations validation = new Validations(_httpContextAccessor.HttpContext.Request, _dbContext.GetDataAccess(), _dbCache);
+                    if (!validation.IsHeaderValid(out GraphQLQuery query, out string error, out string additionalMessage))
+                         return new GenericResponse(_dbContext.GetDataAccess(), error, additionalMessage);
+                    DashBoardSystem system = new DashBoardSystem(_dbContext.GetDataAccess(), _dbCache, _section);
+                    system.Session.User.Uuid = "0000000000000000000000000000000";
+                    using ConnectionHandler manager = new ConnectionHandler(system.Connection);
+                    POSDashboardContext schema = new POSDashboardContext(system, false);
+                    return await schema.ExecutionResult(query);
+               }
+               catch (Exception ex)
+               {
+                    return new GenericResponse() { Result = false, Errors = new[] { new Shelly.GraphQLCore.Model.ErrorSystem() { Id = "E00000003", Type = -1, DefaultMessage = ex.Message, Stack = ex.ToString() } } };
+               }
           }
 
-          public  Task<GenericResponse> ExecutionResultDashboardSchemaWithSession()
+          public async  Task<GenericResponse> ExecutionResultDashboardSchemaWithSession()
           {
-               throw new NotImplementedException();
+               try
+               {
+                    Validations validation = new Validations(_httpContextAccessor.HttpContext.Request, _dbContext.GetDataAccess(), _dbCache);
+                    if (!validation.IsHeaderValid(out GraphQLQuery query, out LoginInfo? loginInfo, out string error, out string additionalMessage))
+                         return new GenericResponse(_dbContext.GetDataAccess(), error, additionalMessage);
+                    DashBoardSystem system = new DashBoardSystem(_dbContext.GetDataAccess(), _dbCache, _section);
+                    system.LogIn(loginInfo.UserNumber, loginInfo.Company);
+                    system.InfoSessionToken = loginInfo;
+                    using ConnectionHandler manager = new ConnectionHandler(system.Connection);
+                    POSDashboardContext schema = new POSDashboardContext(system, true);
+                    return await schema.ExecutionResult(query);
+               }
+               catch (Exception ex)
+               {
+                    return new GenericResponse() { Result = false, Errors = new[] { new Shelly.GraphQLCore.Model.ErrorSystem() { Id = "E00000003", Type = -1, DefaultMessage = ex.Message, Stack = ex.ToString() } } };
+               }
           }
      }
 }

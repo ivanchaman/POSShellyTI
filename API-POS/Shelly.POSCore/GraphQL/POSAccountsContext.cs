@@ -1,9 +1,9 @@
 ﻿namespace Shelly.POSCore.GraphQl
 {
-     internal class EvedFoodContext : Shelly.GraphQLCore.GraphQl.AccountsContext
+     internal class POSAccountsContext : Shelly.GraphQLCore.GraphQl.AccountsContext
      {
           
-          public EvedFoodContext(AccountSystem system, bool hasSesion) : base(system, hasSesion)
+          public POSAccountsContext(AccountSystem system, bool hasSesion) : base(system, hasSesion)
           {
               
           }

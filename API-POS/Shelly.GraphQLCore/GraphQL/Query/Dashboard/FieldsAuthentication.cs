@@ -1,6 +1,6 @@
 ﻿namespace Shelly.GraphQLCore.GraphQL.Query.Dashboard
 {
-     internal partial class Queries
+     public partial class Queries
      {
           public void FieldsAuthentication()
           {

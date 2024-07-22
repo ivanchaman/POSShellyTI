@@ -7,14 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Shelly.EvedFoodProviderData\Shelly.POSProviderData.csproj" />
-    <ProjectReference Include="..\Shelly.POSProviderData\Shelly.POSProviderData.csproj" />
     <ProjectReference Include="..\Shelly.GraphQLCore\Shelly.GraphQLCore.csproj" />
+    <ProjectReference Include="..\Shelly.POSProviderData\Shelly.POSProviderData.csproj" />
     <ProjectReference Include="..\Shelly.ProviderData\Shelly.ProviderData.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="GraphQL\InputTypes\" />
+    <Folder Include="GraphQL\Mutation\Dashboard\" />
     <Folder Include="GraphQL\Resolvers\" />
     <Folder Include="Interface\" />
   </ItemGroup>

@@ -582,10 +582,10 @@ namespace Shelly.ProviderData.GenericRepository.Entity
                string select = _catalog._fields.ToString();
                _catalog.Prefix = Prefix;
                _catalog.NumberTable = NumberTable;
-               if (pageNumber == 0)
-                    pageNumber = 1;
-               if (rowsOfPage == 0)
-                    rowsOfPage = 20;
+               //if (pageNumber == 0)
+               //     pageNumber = 1;
+               //if (rowsOfPage == 0)
+               //     rowsOfPage = 20;
                query.AppendFormat(" with ranked as( ");
                query.AppendFormat(" Select");
                query.AppendFormat(" row_number() over (order by ");
@@ -605,8 +605,11 @@ namespace Shelly.ProviderData.GenericRepository.Entity
                foreach (var key in _catalog.KeyFields)
                     query.AppendFormat(" {0},", key.Key);
                query.Remove(query.Length - 1, 1);
-               query.AppendFormat(" OFFSET ({0}-1)*{1} ROWS", pageNumber, rowsOfPage);
-               query.AppendFormat(" FETCH NEXT {0} ROWS ONLY", rowsOfPage);
+               if (pageNumber > 0 && rowsOfPage > 0)
+               {
+                    query.AppendFormat(" OFFSET ({0}-1)*{1} ROWS", pageNumber, rowsOfPage);
+                    query.AppendFormat(" FETCH NEXT {0} ROWS ONLY", rowsOfPage);
+               }
                return _Connection.GetDataTable(query, parameters);
           }
           public DataTable GetDataTable(int pageNumber, int rowsOfPage)

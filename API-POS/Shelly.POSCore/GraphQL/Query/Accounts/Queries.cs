@@ -4,8 +4,7 @@
      {
         
           public Queries(AccountSystem system) :base(system)
-          {
-               FieldsUserDinner();
+          {              
                FieldsCompanyDinner();
           }                   
      }
