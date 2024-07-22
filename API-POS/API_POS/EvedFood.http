@@ -1,0 +1,6 @@
+@AccountsShelly_HostAddress = http://localhost:5255
+
+GET {{AccountsShelly_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

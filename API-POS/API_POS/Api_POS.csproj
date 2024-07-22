@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.6" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Shelly.POSCore\Shelly.POSCore.csproj" />
+    <ProjectReference Include="..\Shelly.POSProviderData\Shelly.POSProviderData.csproj" />    
+    <ProjectReference Include="..\Shelly.GraphQLCore\Shelly.GraphQLCore.csproj" />
+    <ProjectReference Include="..\Shelly.ManagementExcel\Shelly.ManagementExcel.csproj" />
+    <ProjectReference Include="..\Shelly.ProviderBlobStorages\Shelly.ProviderBlobStorages.csproj" />
+    <ProjectReference Include="..\Shelly.ExceptionHandlerMiddleware\Shelly.ExceptionHandlerMiddleware.csproj" />
+    <ProjectReference Include="..\Shelly.MessagesLocalizer\Shelly.MessagesLocalizer.csproj" />
+    <ProjectReference Include="..\Shelly.ProviderCache\Shelly.ProviderCache.csproj" />
+    <ProjectReference Include="..\Shelly.ProviderData\Shelly.ProviderData.csproj" />
+  </ItemGroup>
+
+</Project>

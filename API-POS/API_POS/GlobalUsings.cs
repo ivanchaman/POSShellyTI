@@ -1,0 +1,9 @@
+﻿global using Shelly.GraphQLCore;
+global using Shelly.ExceptionHandlerMiddleware;
+global using Shelly.ProviderCache;
+global using Shelly.ProviderData;
+global using Shelly.Abstractions.Settings.Options;
+global using Shelly.ProviderBlobStorages;
+global using Shelly.MessagesLocalizer;
+global using Microsoft.OpenApi.Models;
+global using Shelly.POSCore;

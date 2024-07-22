@@ -1,0 +1,9 @@
+﻿global using Microsoft.AspNetCore.Builder;
+global using Microsoft.AspNetCore.Diagnostics;
+global using Microsoft.AspNetCore.Http;
+global using Microsoft.AspNetCore.Mvc;
+global using Shelly.Abstractions.Attributes;
+global using Microsoft.Extensions.DependencyInjection;
+global using Shelly.Abstractions.Interfaces;
+global using System.Reflection;
+global using System.Text.Json;
