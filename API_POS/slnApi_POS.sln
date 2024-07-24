@@ -7,27 +7,27 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BackEnd", "BackEnd", "{8607
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Consumers", "Consumers", "{7C10F295-64F4-4B3F-9F1F-0F768D59F289}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shelly.ExceptionHandlerMiddleware", "Shelly.ExceptionHandlerMiddleware\Shelly.ExceptionHandlerMiddleware.csproj", "{A1D2E598-463C-453B-B1ED-31443E0EFC94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shelly.ExceptionHandlerMiddleware", "..\Shelly.ExceptionHandlerMiddleware\Shelly.ExceptionHandlerMiddleware.csproj", "{A1D2E598-463C-453B-B1ED-31443E0EFC94}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shelly.MessagesLocalizer", "Shelly.MessagesLocalizer\Shelly.MessagesLocalizer.csproj", "{88BBECC8-B7E0-4C23-A708-A218B2BFB9F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shelly.MessagesLocalizer", "..\Shelly.MessagesLocalizer\Shelly.MessagesLocalizer.csproj", "{88BBECC8-B7E0-4C23-A708-A218B2BFB9F8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shelly.ProviderBlobStorages", "Shelly.ProviderBlobStorages\Shelly.ProviderBlobStorages.csproj", "{07A85C18-317F-41E1-80D8-50EB53B77B51}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shelly.ProviderBlobStorages", "..\Shelly.ProviderBlobStorages\Shelly.ProviderBlobStorages.csproj", "{07A85C18-317F-41E1-80D8-50EB53B77B51}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shelly.ProviderCache", "Shelly.ProviderCache\Shelly.ProviderCache.csproj", "{EA6BDF58-3B9A-43E8-9885-D73F54CDBB1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shelly.ProviderCache", "..\Shelly.ProviderCache\Shelly.ProviderCache.csproj", "{EA6BDF58-3B9A-43E8-9885-D73F54CDBB1C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shelly.ProviderData", "Shelly.ProviderData\Shelly.ProviderData.csproj", "{C251B848-0871-48C3-9D07-98BBF58ED33B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shelly.ProviderData", "..\Shelly.ProviderData\Shelly.ProviderData.csproj", "{C251B848-0871-48C3-9D07-98BBF58ED33B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shelly.ManagementExcel", "Shelly.ManagementExcel\Shelly.ManagementExcel.csproj", "{5529DC7E-F8DD-41BB-A444-D731C26CEE7C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shelly.ManagementExcel", "..\Shelly.ManagementExcel\Shelly.ManagementExcel.csproj", "{5529DC7E-F8DD-41BB-A444-D731C26CEE7C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shelly.GraphQLCore", "Shelly.GraphQLCore\Shelly.GraphQLCore.csproj", "{E9C277D8-B765-422B-AC2F-306A874E08A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shelly.GraphQLCore", "..\Shelly.GraphQLCore\Shelly.GraphQLCore.csproj", "{E9C277D8-B765-422B-AC2F-306A874E08A2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shelly.Abstractions", "Shelly.Abstractions\Shelly.Abstractions.csproj", "{E4405272-2F6B-4ED3-B3C5-10D64BB9EC13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shelly.Abstractions", "..\Shelly.Abstractions\Shelly.Abstractions.csproj", "{E4405272-2F6B-4ED3-B3C5-10D64BB9EC13}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api_POS", "API_POS\Api_POS.csproj", "{7E5796E7-CB31-45DF-B4B0-E6FD56B064C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shelly.POSCore", "..\Shelly.POSCore\Shelly.POSCore.csproj", "{390BC08A-C8FD-4EA5-BF38-D59F59A51B0E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shelly.POSCore", "Shelly.POSCore\Shelly.POSCore.csproj", "{390BC08A-C8FD-4EA5-BF38-D59F59A51B0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shelly.POSProviderData", "..\Shelly.POSProviderData\Shelly.POSProviderData.csproj", "{9EBFC749-9BA1-4DF4-B193-F8C457EEBAD6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shelly.POSProviderData", "Shelly.POSProviderData\Shelly.POSProviderData.csproj", "{9EBFC749-9BA1-4DF4-B193-F8C457EEBAD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api_POS", "Api_POS.csproj", "{2CA9D2B9-3AD8-4B33-9AFE-BA9E2152D262}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,10 +67,6 @@ Global
 		{E4405272-2F6B-4ED3-B3C5-10D64BB9EC13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4405272-2F6B-4ED3-B3C5-10D64BB9EC13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4405272-2F6B-4ED3-B3C5-10D64BB9EC13}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7E5796E7-CB31-45DF-B4B0-E6FD56B064C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7E5796E7-CB31-45DF-B4B0-E6FD56B064C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7E5796E7-CB31-45DF-B4B0-E6FD56B064C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7E5796E7-CB31-45DF-B4B0-E6FD56B064C0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{390BC08A-C8FD-4EA5-BF38-D59F59A51B0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{390BC08A-C8FD-4EA5-BF38-D59F59A51B0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{390BC08A-C8FD-4EA5-BF38-D59F59A51B0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -79,6 +75,10 @@ Global
 		{9EBFC749-9BA1-4DF4-B193-F8C457EEBAD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EBFC749-9BA1-4DF4-B193-F8C457EEBAD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EBFC749-9BA1-4DF4-B193-F8C457EEBAD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CA9D2B9-3AD8-4B33-9AFE-BA9E2152D262}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CA9D2B9-3AD8-4B33-9AFE-BA9E2152D262}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CA9D2B9-3AD8-4B33-9AFE-BA9E2152D262}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CA9D2B9-3AD8-4B33-9AFE-BA9E2152D262}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,9 +92,9 @@ Global
 		{5529DC7E-F8DD-41BB-A444-D731C26CEE7C} = {8607B67F-C829-4EA3-B8A6-5DAE9F0B0BF7}
 		{E9C277D8-B765-422B-AC2F-306A874E08A2} = {8607B67F-C829-4EA3-B8A6-5DAE9F0B0BF7}
 		{E4405272-2F6B-4ED3-B3C5-10D64BB9EC13} = {8607B67F-C829-4EA3-B8A6-5DAE9F0B0BF7}
-		{7E5796E7-CB31-45DF-B4B0-E6FD56B064C0} = {7C10F295-64F4-4B3F-9F1F-0F768D59F289}
 		{390BC08A-C8FD-4EA5-BF38-D59F59A51B0E} = {8607B67F-C829-4EA3-B8A6-5DAE9F0B0BF7}
 		{9EBFC749-9BA1-4DF4-B193-F8C457EEBAD6} = {8607B67F-C829-4EA3-B8A6-5DAE9F0B0BF7}
+		{2CA9D2B9-3AD8-4B33-9AFE-BA9E2152D262} = {7C10F295-64F4-4B3F-9F1F-0F768D59F289}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1F0F84F1-8B26-46F3-94A5-4B101082C568}
