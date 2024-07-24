@@ -1,4 +1,4 @@
-﻿namespace ShellyPOS.Models
+﻿namespace Shelly.GraphQLCoreClient.Model
 {
     public class TermAndConditionDocumentResponse
     {

@@ -1,0 +1,9 @@
+﻿global using Shelly.GraphQLCoreClient.Model;
+global using Newtonsoft.Json;
+global using Shelly.GraphQLCoreClient.Interfaces;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.DependencyInjection.Extensions;
+global using Shelly.GraphQLCoreClient.Services;
+global using Shelly.GraphQLShared.Options;
+global using Shelly.GraphQLShared.Model;
+global using Shelly.GraphQLShared.Interfaces;

@@ -1,11 +1,12 @@
 @page "/login"
 @layout LoginLayout
 @using Microsoft.AspNetCore.Components.Authorization
+@using Shelly.GraphQLCoreClient.Interfaces
 @using ShellyPOS.Interfaces
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager Navigation
 @inject NotificationService NotificationService
-@inject IHttpGraphQLClientService HttpService
+@inject ILoginServices LoginServices
 
 <PageTitle>Iniciar Sesión</PageTitle>
 <RadzenContent Container="main">

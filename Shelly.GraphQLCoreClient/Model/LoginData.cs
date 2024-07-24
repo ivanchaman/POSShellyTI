@@ -1,10 +1,8 @@
-﻿using Newtonsoft.Json;
-
-namespace ShellyPOS.Models
+﻿namespace Shelly.GraphQLCoreClient.Model
 {
-    public class LoginModel
+    public class LoginData
     {
-        [JsonProperty ("user")]
+        [JsonProperty("user")]
         public string User { get; set; }
         [JsonProperty("password")]
         public string Password { get; set; }

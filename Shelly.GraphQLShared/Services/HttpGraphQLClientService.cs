@@ -1,4 +1,6 @@
-﻿namespace Shelly.GraphQLShared.Services
+﻿using System.Net.Http;
+
+namespace Shelly.GraphQLShared.Services
 {
     public class HttpGraphQLClientService : IHttpGraphQLClientService
     {
@@ -40,6 +42,7 @@
                 byte[] bytes = System.Text.Encoding.UTF8.GetBytes(dataquery);
                 string base64 = Convert.ToBase64String(bytes);
                 string orderString = "";
+                _httpClient.DefaultRequestHeaders.Clear();
                 Random random = new Random();
                 while (base64.Length > 100)
                 {
@@ -59,14 +62,13 @@
                 {
                     var name = random.Next(1000000000, Int32.MaxValue);
                     _httpClient.DefaultRequestHeaders.Add($"exec-hash-{count}", _EncryptionService.EncryptedRSA1024(orderString.Substring(0, 100)));
-                    orderString = orderString.Substring(100, base64.Length - 100);
+                    orderString = orderString.Substring(100, orderString.Length - 100);
                     count++;
                 }
                 if (orderString.Length != 0)
                 {
                     var name = random.Next(1000000000, Int32.MaxValue);
-                    _httpClient.DefaultRequestHeaders.Add($"exec-hash-{count}", _EncryptionService.EncryptedRSA1024(orderString));
-                    orderString += $"{name}|";
+                    _httpClient.DefaultRequestHeaders.Add($"exec-hash-{count}", _EncryptionService.EncryptedRSA1024(orderString));                    
                 }
                 _httpClient.DefaultRequestHeaders.Add($"hash-id", $"{_EncryptionService.EncryptedRSA1024(random.Next(1000000000, Int32.MaxValue).ToString())}");
                 _httpClient.DefaultRequestHeaders.Add($"content-hash", $"{_EncryptionService.EncryptedRSA1024($"POS|{DateTime.Now.ToUniversalTime().Ticks}")}");

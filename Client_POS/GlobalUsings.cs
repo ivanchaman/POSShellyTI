@@ -4,7 +4,7 @@ global using Microsoft.AspNetCore.Identity;
 global using Radzen;
 global using Shelly.GraphQLShared;
 global using Shelly.GraphQLShared.Interfaces;
-global using Shelly.GraphQLShared.Model;
+global using Shelly.GraphQLCoreClient;
 global using ShellyPOS;
 global using ShellyPOS.Components;
 global using ShellyPOS.Interfaces;

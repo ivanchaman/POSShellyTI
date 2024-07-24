@@ -30,6 +30,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddHttpClient();
 builder.Services.AddRadzenServices();
 builder.Services.AddGraphQLSharedServices(options => builder.Configuration.GetSection(AppSettings.SectionKey).Bind(options));
+builder.Services.AddGraphQLClientServices(options => builder.Configuration.GetSection(AppSettings.SectionKey).Bind(options));
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
 builder.Services.AddScoped<ILocalStorageService, LocalStorageService>();
 builder.Services.AddScoped(x => {

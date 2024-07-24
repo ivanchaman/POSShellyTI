@@ -1,6 +1,6 @@
-﻿namespace ShellyPOS.Models
+﻿namespace Shelly.GraphQLCoreClient.Model
 {
-    public class LoginInfoResponse
+    public class LoginResponse
     {
         public string Token { get; set; }
         public long UserNumber { get; set; }
