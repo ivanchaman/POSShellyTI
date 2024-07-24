@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Shelly.GraphQLShared\Shelly.GraphQLShared.csproj" />
     <ProjectReference Include="..\Shelly.POSCore\Shelly.POSCore.csproj" />
     <ProjectReference Include="..\Shelly.POSProviderData\Shelly.POSProviderData.csproj" />    
     <ProjectReference Include="..\Shelly.GraphQLCore\Shelly.GraphQLCore.csproj" />

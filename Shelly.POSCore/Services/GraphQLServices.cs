@@ -1,6 +1,4 @@
-﻿
-using Shelly.GraphQLCore.Configuration;
-using Shelly.POSCore.GraphQL;
+﻿using Shelly.POSCore.GraphQL;
 
 namespace Shelly.POSCore.Services
 {
@@ -10,19 +8,20 @@ namespace Shelly.POSCore.Services
           private readonly ICacheContext _dbCache;
           private readonly IHttpContextAccessor _httpContextAccessor;
           private readonly IConfiguration _section;
-          public GraphQLServices(IDbConnectContext context, ICacheContext cache, IHttpContextAccessor httpContextAccessor, IConfiguration section)
+          private readonly IHeaderValidationServices _headerValidationServices;
+          public GraphQLServices(IDbConnectContext context, ICacheContext cache, IHttpContextAccessor httpContextAccessor, IConfiguration section, IHeaderValidationServices headerValidationServices)
           {
                _dbContext = context;
                _dbCache = cache;
                _httpContextAccessor = httpContextAccessor;
                _section = section;
+               _headerValidationServices = headerValidationServices;
           }
           public async Task<GenericResponse> ExecutionResultAccountsSchemaWithoutSession()
           {
                try
                {
-                    Validations validation = new Validations(_httpContextAccessor.HttpContext.Request, _dbContext.GetDataAccess(), _dbCache);
-                    if (!validation.IsHeaderValid(out GraphQLQuery query, out string error, out string additionalMessage))
+                    if (!_headerValidationServices.IsHeaderValid(out GraphQLQuery query, out string error, out string additionalMessage))
                          return new GenericResponse(_dbContext.GetDataAccess(), error, additionalMessage);
                     AccountSystem system = new AccountSystem(_dbContext.GetDataAccess(), _dbCache, _section);
                     system.Session.User.Uuid = "0000000000000000000000000000000";
@@ -40,8 +39,7 @@ namespace Shelly.POSCore.Services
           {
                try
                {
-                    Validations validation = new Validations(_httpContextAccessor.HttpContext.Request, _dbContext.GetDataAccess(), _dbCache);
-                    if (!validation.IsHeaderValid(out GraphQLQuery query, out LoginInfo? loginInfo, out string error, out string additionalMessage))
+                    if (!_headerValidationServices.IsHeaderValid(out GraphQLQuery query, out LoginInfo? loginInfo, out string error, out string additionalMessage))
                          return new GenericResponse(_dbContext.GetDataAccess(), error, additionalMessage);
                     AccountSystem system = new AccountSystem(_dbContext.GetDataAccess(), _dbCache, _section);
                     system.LogIn(loginInfo.UserNumber, loginInfo.Company);
@@ -60,8 +58,7 @@ namespace Shelly.POSCore.Services
           {
                try
                {
-                    Validations validation = new Validations(_httpContextAccessor.HttpContext.Request, _dbContext.GetDataAccess(), _dbCache);
-                    if (!validation.IsHeaderValid(out GraphQLQuery query, out string error, out string additionalMessage))
+                    if (!_headerValidationServices.IsHeaderValid(out GraphQLQuery query, out string error, out string additionalMessage))
                          return new GenericResponse(_dbContext.GetDataAccess(), error, additionalMessage);
                     DashBoardSystem system = new DashBoardSystem(_dbContext.GetDataAccess(), _dbCache, _section);
                     system.Session.User.Uuid = "0000000000000000000000000000000";
@@ -79,8 +76,7 @@ namespace Shelly.POSCore.Services
           {
                try
                {
-                    Validations validation = new Validations(_httpContextAccessor.HttpContext.Request, _dbContext.GetDataAccess(), _dbCache);
-                    if (!validation.IsHeaderValid(out GraphQLQuery query, out LoginInfo? loginInfo, out string error, out string additionalMessage))
+                    if (!_headerValidationServices.IsHeaderValid(out GraphQLQuery query, out LoginInfo? loginInfo, out string error, out string additionalMessage))
                          return new GenericResponse(_dbContext.GetDataAccess(), error, additionalMessage);
                     DashBoardSystem system = new DashBoardSystem(_dbContext.GetDataAccess(), _dbCache, _section);
                     system.LogIn(loginInfo.UserNumber, loginInfo.Company);

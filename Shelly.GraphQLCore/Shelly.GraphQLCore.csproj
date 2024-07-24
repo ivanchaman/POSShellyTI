@@ -15,6 +15,7 @@
  </ItemGroup>
  <ItemGroup>
    <ProjectReference Include="..\Shelly.Abstractions\Shelly.Abstractions.csproj" />
+   <ProjectReference Include="..\Shelly.GraphQLShared\Shelly.GraphQLShared.csproj" />
    <ProjectReference Include="..\Shelly.ManagementExcel\Shelly.ManagementExcel.csproj" />
    <ProjectReference Include="..\Shelly.ProviderBlobStorages\Shelly.ProviderBlobStorages.csproj" />
    <ProjectReference Include="..\Shelly.ProviderCache\Shelly.ProviderCache.csproj" />

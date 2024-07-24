@@ -1,3 +1,5 @@
+using Shelly.GraphQLShared.Options;
+
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
@@ -36,8 +38,9 @@ builder.Services
      })
 .AddProviderDataService(options => builder.Configuration.GetSection(DataAccess.SectionKey).Bind(options))
 .AddProviderCacheService(options => builder.Configuration.GetSection(Cache.SectionKey).Bind(options))
+.AddGraphQLSharedServices(options => builder.Configuration.GetSection(AppSettings.SectionKey).Bind(options))
 .AddProviderBlobStorageService(options => builder.Configuration.GetSection(BlobStorages.SectionKey).Bind(options))
-//.AddProviderEmailService()
+
 //.AddProviderHttpService()
 .AddPosCoreServices()
 .AddHttpContextAccessor()
