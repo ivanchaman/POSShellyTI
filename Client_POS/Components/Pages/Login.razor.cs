@@ -9,8 +9,6 @@ namespace ShellyPOS.Components.Pages
             var response = await LoginServices.Login(new LoginData() { User = args.Username, Password = args.Password });
             if (response.Result)
             {
-                var authStateProvider = (CustomAuthStateProvider)AuthenticationStateProvider;
-                await authStateProvider.MarkUserAsAuthenticated(response.Data.Uuid);
                 Navigation.NavigateTo("/");
             }
             else
