@@ -1,6 +1,5 @@
-﻿using ShellyPOS.Models;
-
-namespace ShellyPOS.Interfaces
+﻿
+namespace Shelly.GraphQLShared.Interfaces
 {
     public interface IHttpGraphQLClientService
     {

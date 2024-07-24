@@ -1,7 +1,3 @@
-using Radzen;
-using ShellyPOS.Models;
-using ShellyPOS.Services;
-
 namespace ShellyPOS.Components.Pages
 {
     public partial class Login

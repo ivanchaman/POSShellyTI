@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
-using System.Net;
-using ShellyPOS.Helper;
-namespace ShellyPOS.Models
+
+
+namespace Shelly.GraphQLShared.Model
 {
     public class DataResult<TSuccess, TError>
     {

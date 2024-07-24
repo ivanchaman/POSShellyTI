@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.Serialization;
-
-namespace ShellyPOS.Models
+﻿namespace ShellyPOS.Models
 {
     public partial class ApplicationUser : IdentityUser
     {

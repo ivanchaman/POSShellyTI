@@ -1,0 +1,17 @@
+﻿global using Microsoft.Extensions.DependencyInjection;
+global using Newtonsoft.Json;
+global using Newtonsoft.Json.Linq;
+global using Org.BouncyCastle.Crypto;
+global using Org.BouncyCastle.Crypto.Encodings;
+global using Org.BouncyCastle.Crypto.Engines;
+global using Org.BouncyCastle.Crypto.Parameters;
+global using Org.BouncyCastle.OpenSsl;
+global using Shelly.GraphQLShared.Helpers;
+global using Shelly.GraphQLShared.Interfaces;
+global using Shelly.GraphQLShared.Model;
+global using Shelly.GraphQLShared.Services;
+global using System.Net;
+global using System.Net.Http.Headers;
+global using System.Text;
+global using Microsoft.Extensions.DependencyInjection.Extensions;
+global using Shelly.GraphQLShared.Options;

@@ -1,46 +1,34 @@
-﻿using Microsoft.AspNetCore.Components;
-using Newtonsoft.Json;
-using ShellyPOS.Helper;
-using ShellyPOS.Interfaces;
-using ShellyPOS.Models;
-using System.Net;
-using System.Net.Http.Headers;
-using System.Text;
-namespace ShellyPOS.Services
+﻿namespace Shelly.GraphQLShared.Services
 {
     public class HttpGraphQLClientService : IHttpGraphQLClientService
     {
         private HttpClient _httpClient;
-        private NavigationManager _navigationManager;
-        private ILocalStorageService _localStorageService;
-        private IConfiguration _configuration;
+        private IEncryptionService _EncryptionService;
 
-        public HttpGraphQLClientService(HttpClient httpClient,NavigationManager navigationManager,ILocalStorageService localStorageService,IConfiguration configuration)
+        public HttpGraphQLClientService(HttpClient httpClient, IEncryptionService encryptionService)
         {
             _httpClient = httpClient;
-            _navigationManager = navigationManager;
-            _localStorageService = localStorageService;
-            _configuration = configuration;
+            _EncryptionService = encryptionService;
         }
 
-        public async Task<GenericResponse<Response>> Get<Response,Request>(GraphQLRequest data)
+        public async Task<GenericResponse<Response>> Get<Response, Request>(GraphQLRequest data)
         {
             CreateRequest<Request>(data);
-            var response = await ExecRequest<GenericResponse<Response>, GenericResponse<Response>>($"exec_d",  HttpMethodTypes.GET);
-            if(response.Status)
-                return response.Data;
-            return response.Errors;
-        }              
-
-        public async Task<GenericResponse<Response>> Post<Response, Request>(GraphQLRequest data)
-        {
-            CreateRequest<Request>( data);            
-            var response =await ExecRequest<GenericResponse<Response>, GenericResponse<Response>>($"exec_d",  HttpMethodTypes.POST);
+            var response = await ExecRequest<GenericResponse<Response>, GenericResponse<Response>>($"exec_d", HttpMethodTypes.GET);
             if (response.Status)
                 return response.Data;
             return response.Errors;
         }
-       
+
+        public async Task<GenericResponse<Response>> Post<Response, Request>(GraphQLRequest data)
+        {
+            CreateRequest<Request>(data);
+            var response = await ExecRequest<GenericResponse<Response>, GenericResponse<Response>>($"exec_d", HttpMethodTypes.POST);
+            if (response.Status)
+                return response.Data;
+            return response.Errors;
+        }
+
 
         // helper methods
 
@@ -56,39 +44,39 @@ namespace ShellyPOS.Services
                 while (base64.Length > 100)
                 {
                     var name = random.Next(1000000000, Int32.MaxValue);
-                    _httpClient.DefaultRequestHeaders.Add($"{name}", Cipher.EncryptPEMNetWork(base64.Substring(0, 100)));
+                    _httpClient.DefaultRequestHeaders.Add($"{name}", _EncryptionService.EncryptedRSA1024(base64.Substring(0, 100)));
                     orderString += $"{name}|";
-                    base64 = base64.Substring(100, base64.Length-100);
+                    base64 = base64.Substring(100, base64.Length - 100);
                 }
                 if (base64.Length != 0)
                 {
                     var name = random.Next(1000000000, Int32.MaxValue);
-                    _httpClient.DefaultRequestHeaders.Add($"{name}", Cipher.EncryptPEMNetWork(base64));
+                    _httpClient.DefaultRequestHeaders.Add($"{name}", _EncryptionService.EncryptedRSA1024(base64));
                     orderString += $"{name}|";
                 }
                 int count = 0;
                 while (orderString.Length > 100)
                 {
                     var name = random.Next(1000000000, Int32.MaxValue);
-                    _httpClient.DefaultRequestHeaders.Add($"exec-hash-{count}", Cipher.EncryptPEMNetWork(orderString.Substring(0, 100)));
-                    orderString = orderString.Substring(100, base64.Length-100);
+                    _httpClient.DefaultRequestHeaders.Add($"exec-hash-{count}", _EncryptionService.EncryptedRSA1024(orderString.Substring(0, 100)));
+                    orderString = orderString.Substring(100, base64.Length - 100);
                     count++;
                 }
                 if (orderString.Length != 0)
                 {
                     var name = random.Next(1000000000, Int32.MaxValue);
-                    _httpClient.DefaultRequestHeaders.Add($"exec-hash-{count}", Cipher.EncryptPEMNetWork(orderString));
+                    _httpClient.DefaultRequestHeaders.Add($"exec-hash-{count}", _EncryptionService.EncryptedRSA1024(orderString));
                     orderString += $"{name}|";
-                }                
-                _httpClient.DefaultRequestHeaders.Add($"hash-id", $"{Cipher.EncryptPEMNetWork(random.Next(1000000000, Int32.MaxValue).ToString())}");
-                _httpClient.DefaultRequestHeaders.Add($"content-hash", $"{Cipher.EncryptPEMNetWork($"POS|{DateTime.Now.ToUniversalTime().Ticks}")}");
+                }
+                _httpClient.DefaultRequestHeaders.Add($"hash-id", $"{_EncryptionService.EncryptedRSA1024(random.Next(1000000000, Int32.MaxValue).ToString())}");
+                _httpClient.DefaultRequestHeaders.Add($"content-hash", $"{_EncryptionService.EncryptedRSA1024($"POS|{DateTime.Now.ToUniversalTime().Ticks}")}");
             }
             catch
             {
 
             }
         }
-     
+
         public async Task<DataResult<TSuccess, TError>> ExecRequest<TSuccess, TError>(string uriPathMethod, FormUrlEncodedContent data, HttpMethodTypes httpMethod)
         {
             return await HandleResponseAsync<TSuccess, TError>(uriPathMethod, data, httpMethod);
@@ -101,7 +89,7 @@ namespace ShellyPOS.Services
         {
             return await HandleResponseAsync<TSuccess, TError>(uriPathMethod, data, httpMethod);
         }
-   
+
         public async Task<DataResult<TSuccess, TError>> ExecRequest<TSuccess, TError>(string uriPathMethod, string objRequest)
         {
             return await HandleResponseAsync<TSuccess, TError>(uriPathMethod, objRequest != null ? new StringContent(objRequest, Encoding.UTF8, "application/json") : null, HttpMethodTypes.GET);
@@ -120,33 +108,18 @@ namespace ShellyPOS.Services
         public async Task<DataResult<TSuccess, TError>> ExecRequest<TSuccess, TError>(string uriPathMethod, HttpMethodTypes httpMethod)
         {
             return await HandleResponseAsync<TSuccess, TError>(uriPathMethod, null, httpMethod);
-        }
+        }      
 
-        public async Task<DataResult<TSuccess, TError>> ExecRequest<TSuccess, TError>(string uriPathMethod, IData objRequest)
+        private async Task<DataResult<TSuccess, TError>> HandleResponseAsync<TSuccess, TError>(string uriPathMethod, HttpContent objRequest, HttpMethodTypes httpMethod)
         {
-            return await HandleResponseAsync<TSuccess, TError>(uriPathMethod, objRequest != null ? new StringContent(objRequest.DataSerializable(), Encoding.UTF8, "application/json") : null, HttpMethodTypes.POST);
-        }
-
-        public async Task<DataResult<TSuccess, TError>> ExecRequest<TSuccess, TError>(string uriPathMethod, IList<IData> objRequest)
-        {
-            return await HandleResponseAsync<TSuccess, TError>(uriPathMethod, objRequest != null ? new StringContent(JsonConvert.SerializeObject(objRequest), Encoding.UTF8, "application/json") : null, HttpMethodTypes.POST);
-        }
-
-        public async Task<DataResult<TSuccess, TError>> ExecRequest<TSuccess, TError>(string uriPathMethod, IData objRequest, HttpMethodTypes httpMethod)
-        {
-            return await HandleResponseAsync<TSuccess, TError>(uriPathMethod, objRequest != null ? new StringContent(objRequest.DataSerializable(), Encoding.UTF8, "application/json") : null, httpMethod);
-        }
-
-        private async Task<DataResult<TSuccess, TError>> HandleResponseAsync<TSuccess, TError>(string uriPathMethod, HttpContent objRequest,HttpMethodTypes httpMethod)
-        {
-            string uri = $"{_httpClient.BaseAddress.ToString ().PathURLFormat()}{uriPathMethod}";
+            string uri = $"{_httpClient.BaseAddress.ToString().PathURLFormat()}{uriPathMethod}";
             switch (httpMethod)
             {
                 case HttpMethodTypes.GET:
                 case HttpMethodTypes.POST:
                 case HttpMethodTypes.PUT:
                 case HttpMethodTypes.DELETE:
-                    if(objRequest == null)
+                    if (objRequest == null)
                     {
                         _httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
                         break;
@@ -168,7 +141,7 @@ namespace ShellyPOS.Services
                     }
                     break;
             }
-            HttpResponseMessage? response = null;           
+            HttpResponseMessage? response = null;
             switch (httpMethod)
             {
                 case HttpMethodTypes.SEND:
@@ -223,6 +196,6 @@ namespace ShellyPOS.Services
 
         }
 
-      
+
     }
 }

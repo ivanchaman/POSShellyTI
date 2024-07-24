@@ -1,12 +1,7 @@
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.Extensions.DependencyInjection;
-using Radzen;
-using ShellyPOS.Components;
-using ShellyPOS.Interfaces;
-using ShellyPOS.Models;
-using ShellyPOS.Services;
-using ShellyPOS.Shared;
+
+
+
+using Shelly.GraphQLShared.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,21 +27,10 @@ builder.Services.AddAuthorization(options =>
 builder.Services.AddControllers();
 builder.Services.AddRadzenComponents();
 builder.Services.AddHttpContextAccessor();
-//builder.Services.AddScoped<HttpClient>(serviceProvider =>
-//{
-//    var uriHelper = serviceProvider.GetRequiredService<NavigationManager>();
-//    return new HttpClient
-//    {
-//        BaseAddress = new Uri(uriHelper.BaseUri)
-//    };
-//});
 builder.Services.AddHttpClient();
-builder.Services.AddScoped<DialogService>();
-builder.Services.AddScoped<NotificationService>();
-builder.Services.AddScoped<TooltipService>();
-builder.Services.AddScoped<ContextMenuService>();
+builder.Services.AddRadzenServices();
+builder.Services.AddGraphQLSharedServices(options => builder.Configuration.GetSection(AppSettings.SectionKey).Bind(options));
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
-builder.Services.AddScoped<IHttpGraphQLClientService, HttpGraphQLClientService>();
 builder.Services.AddScoped<ILocalStorageService, LocalStorageService>();
 builder.Services.AddScoped(x => {
     var appSettings =  builder.Configuration.GetSection("AppSettings");    

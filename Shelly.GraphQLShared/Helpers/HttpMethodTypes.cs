@@ -1,4 +1,4 @@
-﻿namespace ShellyPOS.Helper
+﻿namespace Shelly.GraphQLShared.Helpers
 {
     public enum HttpMethodTypes
     {

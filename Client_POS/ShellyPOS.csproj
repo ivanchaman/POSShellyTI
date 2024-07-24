@@ -11,4 +11,12 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Radzen.Blazor" Version="*" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Helper\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Shelly.GraphQLShared\Shelly.GraphQLShared.csproj" />
+  </ItemGroup>
 </Project>

@@ -1,7 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
-
-namespace ShellyPOS.Helper
+﻿
+namespace Shelly.GraphQLShared.Helpers
 {
     public static class ExtensionStrings
     {

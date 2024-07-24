@@ -1,0 +1,15 @@
+﻿global using Microsoft.AspNetCore.Components;
+global using Microsoft.AspNetCore.Components.Authorization;
+global using Microsoft.AspNetCore.Identity;
+global using Radzen;
+global using Shelly.GraphQLShared;
+global using Shelly.GraphQLShared.Interfaces;
+global using Shelly.GraphQLShared.Model;
+global using ShellyPOS;
+global using ShellyPOS.Components;
+global using ShellyPOS.Interfaces;
+global using ShellyPOS.Models;
+global using ShellyPOS.Services;
+global using ShellyPOS.Shared;
+global using System.ComponentModel.DataAnnotations.Schema;
+global using System.Runtime.Serialization;
