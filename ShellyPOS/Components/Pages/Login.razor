@@ -1,0 +1,32 @@
+@page "/login"
+@layout LoginLayout
+@using Microsoft.AspNetCore.Components.Authorization
+@using ShellyPOS.Interfaces
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager Navigation
+@inject NotificationService NotificationService
+@inject IHttpGraphQLClientService HttpService
+
+<PageTitle>Iniciar Sesión</PageTitle>
+<RadzenContent Container="main">
+    <ChildContent>
+        <RadzenHeading Size="H1" Text="Iniciar Sesión">
+        </RadzenHeading>
+        <RadzenTemplateForm TItem="object" Model="@loginModel"  onsubmit="@HandleLogin">
+            <ChildContent>
+                <RadzenLabel Component="Username" style="display: block; margin-top: 16px" Text="Usuario" >
+                </RadzenLabel>
+                <RadzenTextBox style="width: 100%" Name="Username"  @bind-Value="@loginModel.User">
+                </RadzenTextBox>
+                <RadzenLabel Component="Password" style="display: block; margin-top: 16px" Text="Constraseña" >
+                </RadzenLabel>
+                <RadzenPassword style="width: 100%" Name="Password"  @bind-Value="@loginModel.Password">
+                </RadzenPassword>
+                <RadzenButton ButtonType="ButtonType.Submit" style="display: block; margin-top: 16px; width: 100%" Text="Iniciar">
+                </RadzenButton>
+            </ChildContent>
+        </RadzenTemplateForm>
+    </ChildContent>
+</RadzenContent>
+
+
