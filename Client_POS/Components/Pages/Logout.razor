@@ -1,4 +1,4 @@
-﻿@page "/logout"
+@page "/logout"
 @inject NavigationManager Navigation
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
@@ -8,8 +8,7 @@
 @code {
     protected override async Task OnInitializedAsync()
     {
-        var authStateProvider = (ShellyPOS.Services.CustomAuthStateProvider)AuthenticationStateProvider;
-        await authStateProvider.MarkUserAsLoggedOut();
-        Navigation.NavigateTo("/");
+       
+        Navigation.NavigateTo("/login");
     }
 }

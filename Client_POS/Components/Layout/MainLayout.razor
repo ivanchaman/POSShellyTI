@@ -2,7 +2,7 @@
 @using Microsoft.AspNetCore.Components.Authorization
 @inject NavigationManager Navigation
 @inject AuthenticationStateProvider AuthenticationStateProvider
-@attribute [Authorize]
+@attribute [Authorize] 
 
 <RadzenComponents />
 
@@ -13,7 +13,18 @@
                 <RadzenSidebarToggle Click="@SidebarToggleClick"></RadzenSidebarToggle>
             </RadzenColumn>
             <RadzenColumn Size="7">
-                <RadzenStack AlignItems="AlignItems.Center" Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.End"></RadzenStack>
+                <RadzenStack AlignItems="AlignItems.Center" Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.End">
+                     <RadzenProfileMenu>
+                        <Template>
+                                <RadzenGravatar Email="user@example.com"> </RadzenGravatar>
+                                <RadzenLabel Text="Nombre de Usuario"></RadzenLabel>
+                        </Template>
+                        <ChildContent>
+                            <RadzenProfileMenuItem Text="Perfil" Path="" Icon="settings"></RadzenProfileMenuItem>
+                            <RadzenProfileMenuItem Text="Salir" Path="/logout" Icon="power_settings_new"></RadzenProfileMenuItem>                        
+                        </ChildContent>
+                    </RadzenProfileMenu>
+                </RadzenStack>
             </RadzenColumn>
         </RadzenRow>
     </RadzenHeader>
@@ -26,18 +37,28 @@
     </RadzenBody>
     <RadzenSidebar Expanded="@sidebarExpanded" style="z-index: 2">
         <RadzenStack AlignItems="Radzen.AlignItems.Center" class="rz-py-4 rz-py-lg-6" Style="padding: var(--rz-panel-menu-item-padding); border-bottom: var(--rz-panel-menu-item-border);">
-            <RadzenImage Path="images/logo.png"  style="width: 48px; height: 48px;" AlternateText="Application logo"></RadzenImage>
+            <RadzenImage Path="images/logo-login.png"  style="width: 48px; height: 48px;" AlternateText="logo"></RadzenImage>
             <RadzenText Text="ShellyPOS" TextStyle="Radzen.Blazor.TextStyle.Subtitle1" class="rz-mb-0" style="color: var(--rz-sidebar-color);" />
         </RadzenStack>
+        
         <RadzenPanelMenu>
-            <RadzenPanelMenuItem Icon="home" Text="Dashboard" Path="" />
-            <RadzenPanelMenuItem Icon="shopping_cart" Text="Ventas" Path="/sales" />
-            <RadzenPanelMenuItem Icon="assignment_ind" Text="Clientes" Path="" />
-            <RadzenPanelMenuItem Icon="card_giftcard" Text=" Productos" Path="" />
+           
+            <RadzenPanelMenuItem Icon="home" Text="Inicio" Path="" />
+            <RadzenPanelMenuItem Icon="add_shopping_cart" Text="Ventas" Path="/sales" />
+            <RadzenPanelMenuItem Icon="assignment_ind" Text="Clientes" Path="/clients" />
+            <RadzenPanelMenuItem Icon="shopping_cart" Text="Proveedores" Path="/clients" />
+            <RadzenPanelMenuItem Icon="card_giftcard" Text=" Productos" Path="/products" />
             <RadzenPanelMenuItem Icon="chrome_reader_mode" Text="Inventario" Path="" />
-            <RadzenPanelMenuItem Icon="assignment" Text="Reportes" Path="" />
-            <RadzenPanelMenuItem  Icon="settings" Text="Configuración" Path="" />
-            <RadzenPanelMenuItem Text="Sales" Path="sales" />
+            <RadzenPanelMenuItem Icon="dashboard" Text="Reportes" Path="/reports" />
+            <RadzenPanelMenuItem Icon="accessible" Text="Consultorio">
+                <RadzenPanelMenuItem Icon="accessibility" Text="Pacientes"></RadzenPanelMenuItem>
+                <RadzenPanelMenuItem Icon="assignment_turned_in" Text="Servicios"></RadzenPanelMenuItem>
+                <RadzenPanelMenuItem Icon="event" Text="Reservaciones"></RadzenPanelMenuItem>
+            </RadzenPanelMenuItem>
+            <RadzenPanelMenuItem Icon="settings" Text="Configuración" >
+                <RadzenPanelMenuItem Text="Company" Path="/company" Icon="account_circle"></RadzenPanelMenuItem>
+                <RadzenPanelMenuItem Text="Promotions" Path="" Icon="card_giftcard"></RadzenPanelMenuItem>
+            </RadzenPanelMenuItem>            
         </RadzenPanelMenu>
         <RadzenStack AlignItems="Radzen.AlignItems.Center" Gap="0" class="rz-py-4 rz-py-lg-6" Style="padding: var(--rz-panel-menu-item-padding);">
             <RadzenText Text="ShellyPOS v1.0.0" TextStyle="Radzen.Blazor.TextStyle.Caption" TagName="Radzen.Blazor.TagName.P" TextAlign="Radzen.TextAlign.Center" />
