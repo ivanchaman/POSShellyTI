@@ -2,12 +2,19 @@
 {
     public class TermAndConditionDocumentResponse
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string UrlDocument { get; set; }
-        public int Status { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime SignatureDate { get; set; }
+          [JsonProperty("id")]
+          public int Id { get; set; }
+          [JsonProperty("name")]
+          public string Name { get; set; }
+          [JsonProperty("description")]
+          public string Description { get; set; }
+          [JsonProperty("urlDocument")]
+          public string UrlDocument { get; set; }
+          [JsonProperty("status")]
+          public int Status { get; set; }
+          [JsonProperty("createdAt")]
+          public DateTime CreatedAt { get; set; }
+          [JsonProperty("signatureDate")]
+          public DateTime SignatureDate { get; set; }
     }
 }

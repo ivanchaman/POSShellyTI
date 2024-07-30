@@ -10,7 +10,9 @@
                Field(f => f.Company);
                Field(f => f.Password);
                Field(f => f.FirstName);
+               Field(f => f.MiddleName);
                Field(f => f.LastName);
+               Field(f => f.SecondLastName);
                Field(f => f.Email);
                Field(f => f.PhoneCode);
                Field(f => f.PhoneNumber);               

@@ -2,28 +2,28 @@
 namespace Shelly.POSProviderData.Repository.Entity
 {
 	/// <summary>
-	/// Class OtherServices 
+	/// Class LaboratoriesType 
 	/// </summary>
-	public partial class OtherServices:StaticEntity
+	public partial class LaboratoriesType:StaticEntity
 	{
 		#region Contructor
 		/// <summary>
-		///  Initializes a new instance of the <see cref="OtherServices"/> class..
+		///  Initializes a new instance of the <see cref="LaboratoriesType"/> class..
 		/// </summary>
-		public OtherServices():base()
+		public LaboratoriesType():base()
 		{
-			Table = "OtherServices";
+			Table = "LaboratoriesType";
 			Owner= "MedicalClinic";
 			LoadColumnProperties();
 
 		}
 		/// <summary>
-		///  Initializes a new instance of the <see cref="OtherServices"/> class..
+		///  Initializes a new instance of the <see cref="LaboratoriesType"/> class..
 		/// </summary>
 		/// <param name="IBaseSystem">base system</param>
-		public OtherServices(IBaseSystem IBaseSystem):base (IBaseSystem)
+		public LaboratoriesType(IBaseSystem IBaseSystem):base (IBaseSystem)
 		{
-			Table = "OtherServices";
+			Table = "LaboratoriesType";
 			Owner= "MedicalClinic";
 			LoadColumnProperties();
 
@@ -36,28 +36,28 @@ namespace Shelly.POSProviderData.Repository.Entity
 			get => GetPropertyValue<long>("Id");
 			set => SetPropertyValue<long>("Id", value);
 		}
-		[ColumnName("CustomerId")]
-		public long CustomerId
-		{
-			get => GetPropertyValue<long>("CustomerId");
-			set => SetPropertyValue<long>("CustomerId", value);
-		}
 		[ColumnName("Name")]
 		public string Name
 		{
 			get => GetPropertyValue<string>("Name");
 			set => SetPropertyValue<string>("Name", value);
 		}
-		[ColumnName("Description")]
-		public string Description
+		[ColumnName("Status")]
+		public int Status
 		{
-			get => GetPropertyValue<string>("Description");
-			set => SetPropertyValue<string>("Description", value);
+			get => GetPropertyValue<int>("Status");
+			set => SetPropertyValue<int>("Status", value);
+		}
+		[ColumnName("CreatedAt")]
+		public DateTime CreatedAt
+		{
+			get => GetPropertyValue<DateTime>("CreatedAt");
+			set => SetPropertyValue<DateTime>("CreatedAt", value);
 		}
 		#endregion
 		#region Funciones
 		/// <summary>
-		/// Load row of the OtherServices.		/// </summary>
+		/// Load row of the LaboratoriesType.		/// </summary>
 		/// <param name="poId">Id</param>
 		public void Load(long id)
 		{
@@ -86,38 +86,39 @@ namespace Shelly.POSProviderData.Repository.Entity
 			 IsIdentity = true,
 			 DataType = typeof(long)
 			});
-			 AddProperty<long>("CustomerId", new PropertyValue<long> {
-			 Value = default,
-			 IsPrimaryKey = false,
-			 Length = 8,
-			 Precision = 19,
-			 IsRequiredInDataBase = true,
-			 FieldId = 1,
-			 Description = "No description CustomerId",
-			 IsIdentity = false,
-			 DataType = typeof(long)
-			});
 			 AddProperty<string>("Name", new PropertyValue<string> {
-			 Value = String.Empty,
-			 IsPrimaryKey = false,
-			 Length = 1000,
-			 Precision = 0,
-			 IsRequiredInDataBase = false,
-			 FieldId = 2,
-			 Description = "No description Name",
-			 IsIdentity = false,
-			 DataType = typeof(string)
-			});
-			 AddProperty<string>("Description", new PropertyValue<string> {
 			 Value = String.Empty,
 			 IsPrimaryKey = false,
 			 Length = -1,
 			 Precision = 0,
 			 IsRequiredInDataBase = false,
-			 FieldId = 3,
-			 Description = "No description Description",
+			 FieldId = 1,
+			 Description = "No description Name",
 			 IsIdentity = false,
 			 DataType = typeof(string)
+			});
+			 AddProperty<int>("Status", new PropertyValue<int> {
+			 Value = default,
+			 IsPrimaryKey = false,
+			 Length = 1,
+			 Precision = 3,
+			 IsRequiredInDataBase = true,
+			 FieldId = 2,
+			 Description = "No description Status",
+			 IsIdentity = false,
+			 DataType = typeof(int)
+			});
+			 AddProperty<DateTime>("CreatedAt", new PropertyValue<DateTime> {
+			 Value = DefaultDateTime,
+			 IsIncludeHours = true,
+			 IsPrimaryKey = false,
+			 Length = 8,
+			 Precision = 23,
+			 IsRequiredInDataBase = true,
+			 FieldId = 3,
+			 Description = "No description CreatedAt",
+			 IsIdentity = false,
+			 DataType = typeof(DateTime)
 			});
 			}
 			#endregion

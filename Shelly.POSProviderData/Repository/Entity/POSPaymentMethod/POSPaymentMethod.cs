@@ -4,7 +4,6 @@ namespace Shelly.POSProviderData.Repository.Entity
 	/// <summary>
 	/// Class PaymentMethod 
 	/// </summary>
-	[Serializable]
 	public partial class PaymentMethod:StaticEntity
 	{
 		#region Contructor

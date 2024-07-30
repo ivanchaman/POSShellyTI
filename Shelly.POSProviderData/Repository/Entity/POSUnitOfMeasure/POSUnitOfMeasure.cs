@@ -4,7 +4,6 @@ namespace Shelly.POSProviderData.Repository.Entity
 	/// <summary>
 	/// Class UnitOfMeasure 
 	/// </summary>
-	[Serializable]
 	public partial class UnitOfMeasure:StaticEntity
 	{
 		#region Contructor

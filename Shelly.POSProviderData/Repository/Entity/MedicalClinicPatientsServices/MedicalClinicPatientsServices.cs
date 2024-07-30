@@ -4,7 +4,6 @@ namespace Shelly.POSProviderData.Repository.Entity
 	/// <summary>
 	/// Class PatientsServices 
 	/// </summary>
-	[Serializable]
 	public partial class PatientsServices:StaticEntity
 	{
 		#region Contructor

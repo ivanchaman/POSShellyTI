@@ -1,8 +1,3 @@
-
-
-
-using Shelly.GraphQLShared.Options;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -31,14 +26,11 @@ builder.Services.AddHttpClient();
 builder.Services.AddRadzenServices();
 builder.Services.AddGraphQLSharedServices(options => builder.Configuration.GetSection(AppSettings.SectionKey).Bind(options));
 builder.Services.AddGraphQLClientServices(options => builder.Configuration.GetSection(AppSettings.SectionKey).Bind(options));
-builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
-builder.Services.AddScoped<ILocalStorageService, LocalStorageService>();
+builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddScoped(x => {
     var appSettings =  builder.Configuration.GetSection("AppSettings");    
     return new HttpClient() { BaseAddress = new Uri(appSettings["APIUrl"]) };
 });
-builder.Services.AddSingleton<PageHistoryState>();
-//builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 builder.Services.AddLocalization();
 var supportedCultures = new[]{new System.Globalization.CultureInfo("es-MX"),};
 builder.Services.Configure<RequestLocalizationOptions>(options =>
@@ -72,6 +64,4 @@ app.UseAntiforgery();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapRazorComponents<App>().AddInteractiveServerRenderMode();
-//app.MapBlazorHub();
-//app.MapFallbackToPage("/_Host");
 app.Run();

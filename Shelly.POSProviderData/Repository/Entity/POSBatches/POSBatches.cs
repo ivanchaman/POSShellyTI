@@ -4,7 +4,6 @@ namespace Shelly.POSProviderData.Repository.Entity
 	/// <summary>
 	/// Class Batches 
 	/// </summary>
-	[Serializable]
 	public partial class Batches:StaticEntity
 	{
 		#region Contructor

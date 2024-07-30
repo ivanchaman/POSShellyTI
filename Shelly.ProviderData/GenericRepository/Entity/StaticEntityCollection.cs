@@ -576,17 +576,22 @@ namespace Shelly.ProviderData.GenericRepository.Entity
                }
                return _Connection.GetDataTable(query, parameters);
           }
-          public DataTable GetDataTablePagination(string specialFilter, List<ParameterSql> parameters, int pageNumber, int rowsOfPage)
+          public DataTable GetDataTablePagination(string specialFilter, List<ParameterSql> parameters, int pageNumber, long rowsOfPage)
           {
-               StringBuilder query = new StringBuilder();
+               StringBuilder query;
                string select = _catalog._fields.ToString();
                _catalog.Prefix = Prefix;
                _catalog.NumberTable = NumberTable;
-               //if (pageNumber == 0)
-               //     pageNumber = 1;
-               //if (rowsOfPage == 0)
-               //     rowsOfPage = 20;
-               query.AppendFormat(" with ranked as( ");
+            if (pageNumber == 0)
+                pageNumber = 1;
+            if (rowsOfPage == 0)
+            {
+                query = new StringBuilder();
+                query.AppendFormat(" Select count({0}) from {1}", _catalog.KeyFields.First().Key,_catalog.TableName());
+                rowsOfPage = _Connection.ExecuteScalar <long>(query);
+            }
+            query = new StringBuilder();
+            query.AppendFormat(" with ranked as( ");
                query.AppendFormat(" Select");
                query.AppendFormat(" row_number() over (order by ");
                foreach (var key in _catalog.KeyFields)

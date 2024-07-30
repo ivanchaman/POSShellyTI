@@ -4,7 +4,6 @@ namespace Shelly.POSProviderData.Repository.Entity
 	/// <summary>
 	/// Class PatientsLaboratories 
 	/// </summary>
-	[Serializable]
 	public partial class PatientsLaboratories:StaticEntity
 	{
 		#region Contructor
@@ -61,6 +60,18 @@ namespace Shelly.POSProviderData.Repository.Entity
 			get => GetPropertyValue<long>("ImageId");
 			set => SetPropertyValue<long>("ImageId", value);
 		}
+		[ColumnName("LaboratoryId")]
+		public long LaboratoryId
+		{
+			get => GetPropertyValue<long>("LaboratoryId");
+			set => SetPropertyValue<long>("LaboratoryId", value);
+		}
+		[ColumnName("TypeLaboratoryId")]
+		public long TypeLaboratoryId
+		{
+			get => GetPropertyValue<long>("TypeLaboratoryId");
+			set => SetPropertyValue<long>("TypeLaboratoryId", value);
+		}
 		[ColumnName("CreatedAt")]
 		public DateTime CreatedAt
 		{
@@ -85,7 +96,7 @@ namespace Shelly.POSProviderData.Repository.Entity
 			  return;
 
 			KeyFields= new Dictionary<string,object>(1);
-			Properties = new Dictionary<string, Property>(6);
+			Properties = new Dictionary<string, Property>(8);
 
 			 AddKeyField("Id",null);
 			 AddProperty<long>("Id", new PropertyValue<long> {
@@ -143,6 +154,28 @@ namespace Shelly.POSProviderData.Repository.Entity
 			 IsIdentity = false,
 			 DataType = typeof(long)
 			});
+			 AddProperty<long>("LaboratoryId", new PropertyValue<long> {
+			 Value = default,
+			 IsPrimaryKey = false,
+			 Length = 8,
+			 Precision = 19,
+			 IsRequiredInDataBase = true,
+			 FieldId = 5,
+			 Description = "No description LaboratoryId",
+			 IsIdentity = false,
+			 DataType = typeof(long)
+			});
+			 AddProperty<long>("TypeLaboratoryId", new PropertyValue<long> {
+			 Value = default,
+			 IsPrimaryKey = false,
+			 Length = 8,
+			 Precision = 19,
+			 IsRequiredInDataBase = true,
+			 FieldId = 6,
+			 Description = "No description TypeLaboratoryId",
+			 IsIdentity = false,
+			 DataType = typeof(long)
+			});
 			 AddProperty<DateTime>("CreatedAt", new PropertyValue<DateTime> {
 			 Value = DefaultDateTime,
 			 IsIncludeHours = true,
@@ -150,7 +183,7 @@ namespace Shelly.POSProviderData.Repository.Entity
 			 Length = 8,
 			 Precision = 23,
 			 IsRequiredInDataBase = true,
-			 FieldId = 5,
+			 FieldId = 7,
 			 Description = "No description CreatedAt",
 			 IsIdentity = false,
 			 DataType = typeof(DateTime)

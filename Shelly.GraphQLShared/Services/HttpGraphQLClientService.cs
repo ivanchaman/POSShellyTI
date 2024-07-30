@@ -1,8 +1,6 @@
-﻿using System.Net.Http;
-
-namespace Shelly.GraphQLShared.Services
+﻿namespace Shelly.GraphQLShared.Services
 {
-    public class HttpGraphQLClientService : IHttpGraphQLClientService
+     public class HttpGraphQLClientService : IHttpGraphQLClientService
     {
         private HttpClient _httpClient;
         private IEncryptionService _EncryptionService;

@@ -166,8 +166,8 @@ namespace Shelly.ProviderData.Repository.Entity
 				accounts.UserNumber = Id;
 				accounts.FirstName = data.FirstName;
 				accounts.LastName = data.LastName;
-				accounts.MiddleName = "";
-				accounts.SecondLastName = "";
+				accounts.MiddleName = data.MiddleName;
+				accounts.SecondLastName = data.SecondLastName;
 				accounts.Nationality = 484;
 				accounts.Birthday = new DateTime(1900,1,1);
 				accounts.CreatedAt = DateTime.Now;
