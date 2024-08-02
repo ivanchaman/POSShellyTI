@@ -32,6 +32,7 @@ namespace Shelly.GraphQLCore.Configuration
           }
           private void JsonLoadSettings(IConfiguration section)
           {
+               section.GetSection(Shelly.Abstractions.Settings.Local.SectionKey).Bind(LocalSettings);
                section.GetSection(Shelly.Abstractions.Settings.Options.DataAccess.SectionKey).Bind(LocalSettings.DataAccess);
                section.GetSection(Shelly.Abstractions.Settings.Options.BlobStorages.SectionKey).Bind(LocalSettings.BlobStorages);
                section.GetSection(Shelly.Abstractions.Settings.Options.Cache.SectionKey).Bind(LocalSettings.Cache);
@@ -87,6 +88,7 @@ namespace Shelly.GraphQLCore.Configuration
           }
           private void ValidateInfoUser(string password)
           {
+               Encryption encryption = new Encryption();
                if (UserInBlackList())
                     throw new CoreException(Errors.E00000001);
                switch ((UserStatusType)User.Status)
@@ -99,7 +101,7 @@ namespace Shelly.GraphQLCore.Configuration
                          throw new CoreException(Errors.E00000002);
                }
 
-               bool isUserValid = Cipher.BCryptVerify(password, User.Password);
+               bool isUserValid = encryption.BCryptVerify(password, User.Password);
                if (!isUserValid)
                {
                     InsertLogDataLogin(false);

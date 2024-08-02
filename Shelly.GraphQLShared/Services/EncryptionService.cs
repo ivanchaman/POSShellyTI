@@ -9,13 +9,13 @@
             _Options = options;
         }
 
-        public string DecodedRSA1024(string content)
+        public string DecodedRSA1024(string content, string key)
         {
             try
             {
                 if (string.IsNullOrEmpty(content))
                     return "";
-                PemReader pr = new PemReader(new StringReader(_Options.Privatekey));
+                PemReader pr = new PemReader(new StringReader(key));
                 AsymmetricCipherKeyPair keys = (AsymmetricCipherKeyPair)pr.ReadObject();
                 RsaKeyParameters privateKey = (RsaKeyParameters)keys.Private;
                 var cipher = new Pkcs1Encoding(new RsaEngine());
@@ -31,11 +31,11 @@
             }
         }
 
-        public string EncryptedRSA1024(string content)
+        public string EncryptedRSA1024(string content, string key)
         {
             try
             {
-                PemReader pr = new PemReader(new StringReader(_Options.PublicKey));
+                PemReader pr = new PemReader(new StringReader(key));
                 RsaKeyParameters publicKey = (RsaKeyParameters)pr.ReadObject();
                 IAsymmetricBlockCipher cipher = new Pkcs1Encoding(new RsaEngine());
                 cipher.Init(true, publicKey);

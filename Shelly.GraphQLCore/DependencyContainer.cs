@@ -23,7 +23,8 @@ namespace Shelly.GraphQLCore
                AppSettings options = new AppSettings();
                action.Invoke(options);
                services.AddSingleton(options);
-               services.TryAddScoped<IEncryptionService, EncryptionService>();
+               services.TryAddScoped<IEncryptionService, EncryptionService>();               
+               services.TryAddScoped<IDataEncryptionService, NetworkEncryptionServices>();
                services.AddScoped<IHeaderValidationServices, HeaderValidationServices>();
                return services;
           }

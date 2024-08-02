@@ -9,8 +9,8 @@ namespace Shelly.GraphQLCore.Services
         private readonly IHttpContextAccessor _httpContextAccessor;
         private IDbConnectContext _dbcontext;
         private ICacheContext _cache;
-        private IEncryptionService _encryptionService;
-        public HeaderValidationServices(IDbConnectContext dbcontext, IHttpContextAccessor httpContextAccessor, ICacheContext cache, IEncryptionService encryptionService)
+        private IDataEncryptionService _encryptionService;
+        public HeaderValidationServices(IDbConnectContext dbcontext, IHttpContextAccessor httpContextAccessor, ICacheContext cache, IDataEncryptionService encryptionService)
         {
             _httpContextAccessor = httpContextAccessor;
             _cache = cache;
@@ -63,7 +63,7 @@ namespace Shelly.GraphQLCore.Services
         }
         private bool ValidateHeader(GraphQLQuery query, out string contentHash, out double diff, out string error)
         {
-            contentHash = _encryptionService.DecodedRSA1024(GetHeaderValue("content-hash"));
+            contentHash = _encryptionService.Decoded(GetHeaderValue("content-hash"));
             diff = 0;
             error = "";
             if (string.IsNullOrEmpty(GetHeaderValue("hash-id")))
@@ -301,7 +301,7 @@ namespace Shelly.GraphQLCore.Services
                     string infoHeader = GetHeaderValue(header);
                     if (string.IsNullOrEmpty(infoHeader))
                         return false;
-                    contentexec.Append(_encryptionService.DecodedRSA1024(infoHeader));
+                    contentexec.Append(_encryptionService.Decoded(infoHeader));
                 }
                 if (contentexec.Length == 0)
                     return false;
@@ -326,7 +326,7 @@ namespace Shelly.GraphQLCore.Services
             string infoHash = "";
             foreach (var exec in execHash)
             {
-                infoHash += Cipher.DecryptPEMNetWork(exec.Value.ToString());
+                infoHash += _encryptionService.Decoded(exec.Value.ToString());
             }
             return infoHash;
         }

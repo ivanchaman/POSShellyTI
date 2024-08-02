@@ -40,8 +40,6 @@ builder.Services
 .AddProviderCacheService(options => builder.Configuration.GetSection(Cache.SectionKey).Bind(options))
 .AddGraphQLSharedServices(options => builder.Configuration.GetSection(AppSettings.SectionKey).Bind(options))
 .AddProviderBlobStorageService(options => builder.Configuration.GetSection(BlobStorages.SectionKey).Bind(options))
-
-//.AddProviderHttpService()
 .AddPosCoreServices()
 .AddHttpContextAccessor()
 .AddMessageLocalizer();

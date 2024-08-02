@@ -1,14 +1,10 @@
-﻿
-using Shelly.Abstractions.Constants;
-using Shelly.ProviderData.Helper;
-
-namespace Shelly.ProviderData.GenericRepository.Entity
+﻿namespace Shelly.ProviderData.GenericRepository.Entity
 {
-    /// <summary>
-    /// Clase que contiene las funciones basicas para el manejo de tablas del sistema
-    /// Actualmete solo funcion para las tablas que no son de metadatos
-    /// </summary>
-    [Serializable]
+     /// <summary>
+     /// Clase que contiene las funciones basicas para el manejo de tablas del sistema
+     /// Actualmete solo funcion para las tablas que no son de metadatos
+     /// </summary>
+     [Serializable]
      public class StaticEntity : DynamicObject, IDynamicMetaObjectProvider
      {
           #region Variables
@@ -2172,6 +2168,7 @@ namespace Shelly.ProviderData.GenericRepository.Entity
           {
                EOF = false;
                _isNew = false;
+               Encryption encryption = new Encryption(_System.LocalSettings.DBPublicKey, _System.LocalSettings.DBPrivatekey);
                //Cuando se hace una asignacion de un objeto a otro no hace una copia de valor hace una copia por refrencia
                foreach (KeyValuePair<string, Property> column in Properties)
                {
@@ -2231,7 +2228,7 @@ namespace Shelly.ProviderData.GenericRepository.Entity
                     {
                          if (column.Value.IsEncrypted)
                          {
-                              SetPropertyValue(column.Key, Cipher.DecryptPEMDataBase(dataRow.GetValue<string>(column.Key)), true);
+                              SetPropertyValue(column.Key, encryption.DecodedPEMDataBase(dataRow.GetValue<string>(column.Key)), true);
                               if (!string.IsNullOrEmpty(dataRow.GetValue<string>(column.Key)))
                                    SetPropertyValue(column.Key, constMask, false);
                          }
@@ -2500,6 +2497,7 @@ namespace Shelly.ProviderData.GenericRepository.Entity
           /// <exception cref="Exception"></exception>
           private void AddValue<T>(string name, PropertyValue<T> columnProperty, ref StringBuilder values)
           {
+               Encryption encryption = new Encryption(_System.LocalSettings.DBPublicKey, _System.LocalSettings.DBPrivatekey);
                if (columnProperty.IsPrimaryKey || columnProperty.IsIdentity)
                {
                     if (columnProperty.IsEncrypted)
@@ -2583,11 +2581,11 @@ namespace Shelly.ProviderData.GenericRepository.Entity
                     }
                     if (columnProperty.IsPassword)
                     {
-                         (columnProperty as PropertyValue<string>).Value = Cipher.BCryptHashPassword(Convert.ToString(columnProperty.Value));
+                         (columnProperty as PropertyValue<string>).Value = encryption.BCryptHashPassword(Convert.ToString(columnProperty.Value));
                     }
                     else if (columnProperty.IsEncrypted && Convert.ToString(columnProperty.Value) != constMask && !string.IsNullOrEmpty(Convert.ToString(columnProperty.Value)))
                     {
-                         (columnProperty as PropertyValue<string>).Value = Cipher.EncryptPEMDataBase(Convert.ToString(columnProperty.Value));
+                         (columnProperty as PropertyValue<string>).Value = encryption.EncryptedPEMDataBase(Convert.ToString(columnProperty.Value));
                     }
                     if (columnProperty.IsGuid)
                     {
@@ -3610,7 +3608,7 @@ namespace Shelly.ProviderData.GenericRepository.Entity
                query = new StringBuilder();
                fields = new StringBuilder();
                values = new StringBuilder();
-
+               Encryption encryption = new Encryption(_System.LocalSettings.DBPublicKey, _System.LocalSettings.DBPrivatekey);
                string name;
                _sqlParameterList = new List<ParameterSql>();
                _containsIdentityFields = false;
@@ -3803,12 +3801,12 @@ namespace Shelly.ProviderData.GenericRepository.Entity
                               }
                               if (stringProperty.IsPassword)
                               {
-                                   stringProperty.Value = Cipher.BCryptHashPassword(stringProperty.Value);
+                                   stringProperty.Value = encryption.BCryptHashPassword(stringProperty.Value);
                                    _sqlParameterList.Add(new ParameterSql(name, stringProperty.Value));
                               }
                               else if (stringProperty.IsEncrypted && stringProperty.Value != constMask)
                               {
-                                   stringProperty.Value = Cipher.EncryptPEMDataBase(stringProperty.Value);
+                                   stringProperty.Value = encryption.EncryptedPEMDataBase(stringProperty.Value);
                                    _sqlParameterList.Add(new ParameterSql(name, stringProperty.Value));
                               }
                               else if (stringProperty.IsGuid)
@@ -4022,7 +4020,7 @@ namespace Shelly.ProviderData.GenericRepository.Entity
                query = new StringBuilder();
                fields = new StringBuilder();
                values = new StringBuilder();
-
+               Encryption encryption = new Encryption(_System.LocalSettings.DBPublicKey, _System.LocalSettings.DBPrivatekey);
                string name;
                _sqlParameterList = new List<ParameterSql>();
                _containsIdentityFields = false;
@@ -4202,12 +4200,12 @@ namespace Shelly.ProviderData.GenericRepository.Entity
                               }
                               if (stringProperty.IsPassword)
                               {
-                                   stringProperty.Value = Cipher.BCryptHashPassword(stringProperty.Value);
+                                   stringProperty.Value = encryption.BCryptHashPassword(stringProperty.Value);
                                    _sqlParameterList.Add(new ParameterSql(name, stringProperty.Value));
                               }
                               else if (stringProperty.IsEncrypted && stringProperty.Value != constMask)
                               {
-                                   stringProperty.Value = Cipher.EncryptPEMDataBase(stringProperty.Value);
+                                   stringProperty.Value = encryption.EncryptedPEMDataBase(stringProperty.Value);
                                    _sqlParameterList.Add(new ParameterSql(name, stringProperty.Value));
                               }
                               else if (stringProperty.IsGuid)

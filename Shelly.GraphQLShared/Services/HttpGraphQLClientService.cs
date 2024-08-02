@@ -3,9 +3,9 @@
      public class HttpGraphQLClientService : IHttpGraphQLClientService
     {
         private HttpClient _httpClient;
-        private IEncryptionService _EncryptionService;
+        private IDataEncryptionService _EncryptionService;
 
-        public HttpGraphQLClientService(HttpClient httpClient, IEncryptionService encryptionService)
+        public HttpGraphQLClientService(HttpClient httpClient, IDataEncryptionService encryptionService)
         {
             _httpClient = httpClient;
             _EncryptionService = encryptionService;
@@ -45,31 +45,31 @@
                 while (base64.Length > 100)
                 {
                     var name = random.Next(1000000000, Int32.MaxValue);
-                    _httpClient.DefaultRequestHeaders.Add($"{name}", _EncryptionService.EncryptedRSA1024(base64.Substring(0, 100)));
+                    _httpClient.DefaultRequestHeaders.Add($"{name}", _EncryptionService.Encrypted(base64.Substring(0, 100)));
                     orderString += $"{name}|";
                     base64 = base64.Substring(100, base64.Length - 100);
                 }
                 if (base64.Length != 0)
                 {
                     var name = random.Next(1000000000, Int32.MaxValue);
-                    _httpClient.DefaultRequestHeaders.Add($"{name}", _EncryptionService.EncryptedRSA1024(base64));
+                    _httpClient.DefaultRequestHeaders.Add($"{name}", _EncryptionService.Encrypted(base64));
                     orderString += $"{name}|";
                 }
                 int count = 0;
                 while (orderString.Length > 100)
                 {
                     var name = random.Next(1000000000, Int32.MaxValue);
-                    _httpClient.DefaultRequestHeaders.Add($"exec-hash-{count}", _EncryptionService.EncryptedRSA1024(orderString.Substring(0, 100)));
+                    _httpClient.DefaultRequestHeaders.Add($"exec-hash-{count}", _EncryptionService.Encrypted(orderString.Substring(0, 100)));
                     orderString = orderString.Substring(100, orderString.Length - 100);
                     count++;
                 }
                 if (orderString.Length != 0)
                 {
                     var name = random.Next(1000000000, Int32.MaxValue);
-                    _httpClient.DefaultRequestHeaders.Add($"exec-hash-{count}", _EncryptionService.EncryptedRSA1024(orderString));                    
+                    _httpClient.DefaultRequestHeaders.Add($"exec-hash-{count}", _EncryptionService.Encrypted(orderString));                    
                 }
-                _httpClient.DefaultRequestHeaders.Add($"hash-id", $"{_EncryptionService.EncryptedRSA1024(random.Next(1000000000, Int32.MaxValue).ToString())}");
-                _httpClient.DefaultRequestHeaders.Add($"content-hash", $"{_EncryptionService.EncryptedRSA1024($"POS|{DateTime.Now.ToUniversalTime().Ticks}")}");
+                _httpClient.DefaultRequestHeaders.Add($"hash-id", $"{_EncryptionService.Encrypted(random.Next(1000000000, Int32.MaxValue).ToString())}");
+                _httpClient.DefaultRequestHeaders.Add($"content-hash", $"{_EncryptionService.Encrypted($"POS|{DateTime.Now.ToUniversalTime().Ticks}")}");
             }
             catch
             {
