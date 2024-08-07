@@ -5,7 +5,7 @@ namespace Shelly.POSCore.GraphQL.Query.Accounts
      internal partial class Queries
      {
           #region Queries
-          public void FieldsUserDinner()
+          public void FieldsPOS()
           {
            
                

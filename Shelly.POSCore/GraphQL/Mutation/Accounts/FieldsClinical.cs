@@ -2,16 +2,16 @@
 {
      internal partial class Mutations
      {
-          public void FieldsUserDinner()
+          public void FieldsClinical()
           {
+             
 
-              
           }
           #region Users
+         
 
 
 
-       
           #endregion
 
 

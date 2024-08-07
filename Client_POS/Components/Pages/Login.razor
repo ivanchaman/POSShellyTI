@@ -9,12 +9,13 @@
 <PageTitle>Iniciar Sesión</PageTitle>
 <RadzenContent Container="main">
     <ChildContent>      
-        <RadzenTemplateForm Data=@("LoginWithRemember")>
+        <RadzenTemplateForm Data=@("LoginWithRemember") >
             <ChildContent>
-                <RadzenLogin AllowRegister="true" 
+                <RadzenLogin                       
+                    AllowRegister="true" 
                     AllowResetPassword="true" 
-                    Username="" 
-                    Password=""                        
+                    Username="@(UserName)" 
+                    Password=""                       
                     AllowRememberMe="true" 
                     RememberMe="true"
                     UserText="Usuario" 

@@ -4,7 +4,7 @@
      {         
           public Mutations(AccountSystem system) : base(system)
           {
-               FieldsUserDinner();
+               FieldsClinical();
           }
      }
 }

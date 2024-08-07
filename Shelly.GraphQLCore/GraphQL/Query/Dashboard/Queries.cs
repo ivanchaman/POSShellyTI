@@ -8,6 +8,8 @@
                _System = system;
                Name = "DashboardQueries";
                FieldsAuthentication();
+               FieldsCompanies();
+               FieldsUsers();
           }
          
      }

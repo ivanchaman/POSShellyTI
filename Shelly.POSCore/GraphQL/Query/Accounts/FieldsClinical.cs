@@ -2,7 +2,7 @@
 {
      internal partial class Queries
      {
-          public void FieldsCompanyDinner()
+          public void FieldsClinical()
           {
              
           }

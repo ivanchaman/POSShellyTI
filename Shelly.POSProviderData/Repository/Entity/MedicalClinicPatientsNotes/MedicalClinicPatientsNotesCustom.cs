@@ -83,6 +83,31 @@ namespace Shelly.POSProviderData.Repository.Entity
 		}
 
 		#endregion
+		#region Methods
+
+		public void Add(PatientsNotes data)
+		{
+
+			 if( data.MedicalServicesId == 0 ){ 
+			       New(); 
+			 CopyData(data); 
+			 Save();} 
+
+			 Load( data.MedicalServicesId); 
+			  if (EOF) 
+			       New(); 
+			 CopyData(data); 
+			 Save(); 
+		}
+
+		public void Delete(PatientsNotes data)		{
+
+			 base.Load( data.MedicalServicesId); 
+			  if (EOF) 
+			      return; 
+			 base.Save(); 
+		}
+		#endregion
 
 		}
 	}

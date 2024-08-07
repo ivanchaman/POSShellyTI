@@ -47,7 +47,7 @@ namespace Shelly.POSProviderData.Repository.Entity
 		/// </summary>
 		protected override void LoadNewCustomValues()
 		{
-		
+       Company = _System.Session.Company.Number; 		
 		}
 		#endregion Prewrite validations
 		#region Postwrite
@@ -82,6 +82,31 @@ namespace Shelly.POSProviderData.Repository.Entity
 		public void ValildationsDelete()		{
 		}
 
+		#endregion
+		#region Methods
+
+		public void Add(Reservations data)
+		{
+
+			 if( data.Id == 0 ){ 
+			       New(); 
+			 CopyData(data); 
+			 Save();} 
+
+			 Load( data.Id); 
+			  if (EOF) 
+			       New(); 
+			 CopyData(data); 
+			 Save(); 
+		}
+
+		public void Delete(Reservations data)		{
+
+			 base.Load( data.Id); 
+			  if (EOF) 
+			      return; 
+			 base.Save(); 
+		}
 		#endregion
 
 		}

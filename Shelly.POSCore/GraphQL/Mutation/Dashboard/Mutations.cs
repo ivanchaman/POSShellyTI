@@ -4,7 +4,8 @@
      {
           public Mutations(DashBoardSystem system) : base(system)
           {
-              
+               FieldsPOS();
+               FieldsClinical();
           }
      }
 }

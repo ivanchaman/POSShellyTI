@@ -4,8 +4,9 @@
      {
         
           public Queries(AccountSystem system) :base(system)
-          {              
-               FieldsCompanyDinner();
+          {
+               FieldsPOS();
+               FieldsClinical();
           }                   
      }
 }
