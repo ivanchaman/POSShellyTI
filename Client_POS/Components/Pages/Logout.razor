@@ -1,14 +1,17 @@
 @page "/logout"
 @inject NavigationManager Navigation
 @inject AuthenticationStateProvider AuthenticationStateProvider
-
+@inject IAuthenticationServices AuthenticationServices
+@inject ILocalStorageService LocalStorageService
 
 <h3>Logging out...</h3>
 
 @code {
     protected override async Task OnInitializedAsync()
-    {
-       
+    {      
+        LoginResponse token = await LocalStorageService.GetItemAsync<LoginResponse>(ItemsStorages.Token);
+        await LocalStorageService.RemoveItemAsync(ItemsStorages.Token);
+        var response = await AuthenticationServices.Logout (token.Token);
         Navigation.NavigateTo("/login");
     }
 }

@@ -9,3 +9,4 @@ global using Shelly.GraphQLShared;
 global using Shelly.GraphQLShared.Options;
 global using ShellyPOS;
 global using ShellyPOS.Components;
+global using Shelly.GraphQLCoreClient.Helper;

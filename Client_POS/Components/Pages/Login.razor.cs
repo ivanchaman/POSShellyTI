@@ -1,5 +1,3 @@
-using Radzen.Blazor;
-
 namespace ShellyPOS.Components.Pages
 {
      public partial class Login
@@ -7,14 +5,14 @@ namespace ShellyPOS.Components.Pages
           string UserName { get; set; }
           protected override async Task OnInitializedAsync()
           {
-                           
+
                await base.OnInitializedAsync();
           }
           protected override async Task OnAfterRenderAsync(bool firstRender)
           {
                if (firstRender)
                {
-                    UserName = await LocalStorageService.GetItemAsStringAsync("UserName");                    
+                    UserName = await LocalStorageService.GetItemAsync<string>(ItemsStorages.UserName);
                     StateHasChanged();
                }
           }
@@ -23,11 +21,12 @@ namespace ShellyPOS.Components.Pages
                var response = await LoginServices.Login(new LoginData() { User = args.Username, Password = args.Password });
                if (response.Result)
                {
+                    await LocalStorageService.RemoveItemAsync(ItemsStorages.UserName);
                     if (args.RememberMe == true)
                     {
-                        await LocalStorageService.SetItemAsync("UserName", args.Username);
+                         await LocalStorageService.SetItemAsync(ItemsStorages.UserName, args.Username);
                     }
-                    await LocalStorageService.SetItemAsync("Token", response.Response);
+                    await LocalStorageService.SetItemAsync(ItemsStorages.Token, response.Response);
                     Navigation.NavigateTo("/");
                }
                else

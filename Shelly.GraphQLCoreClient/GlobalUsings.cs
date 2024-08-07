@@ -7,3 +7,4 @@ global using Shelly.GraphQLCoreClient.Services;
 global using Shelly.GraphQLShared.Options;
 global using Shelly.GraphQLShared.Model;
 global using Shelly.GraphQLShared.Interfaces;
+global using Shelly.GraphQLCoreClient.Helper;

@@ -1,5 +1,4 @@
-﻿
-namespace Shelly.GraphQLCoreClient
+﻿namespace Shelly.GraphQLCoreClient
 {
     public static class DependencyContainer
     {
@@ -8,7 +7,12 @@ namespace Shelly.GraphQLCoreClient
             AppSettings options = new AppSettings();
             action.Invoke(options);
             services.AddSingleton(options);
-            services.TryAddScoped<ILoginServices, LoginServices>();
+            services.TryAddScoped<IAuthenticationServices, AuthenticationServices>();
+            services.TryAddScoped<IClinicalMedicalServices, ClinicalMedicalServices>();
+            services.TryAddScoped<ICompanyServices, CompanyServices>();
+            services.TryAddScoped<IPOSServices, POSServices>();
+            services.TryAddScoped<IRegistersServices, RegistersServices>();
+            services.TryAddScoped<IUserServices, UserServices>();
             return services;
         }
     }
