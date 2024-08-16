@@ -1,9 +1,6 @@
-﻿using Shelly.ProviderData.GenericRepository;
-using Shelly.Abstractions.Settings;
-
-namespace Shelly.ProviderData.Repository.Entity
+﻿namespace Shelly.ProviderData.Repository.Entity
 {
-	public partial class UsersSecurityCollection:StaticEntityCollection<UsersSecurity>
+     public partial class UsersSecurityCollection:StaticEntityCollection<UsersSecurity>
 	{
 		#region variables
 		#endregion

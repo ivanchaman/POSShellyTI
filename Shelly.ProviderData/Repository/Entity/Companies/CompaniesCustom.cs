@@ -85,8 +85,24 @@
 		{
 		}
 
-		#endregion
-		public void Add(NewCompany data)
+          #endregion
+          public void Add(Companies data)
+          {
+
+               if (data.Id == 0)
+               {
+                    New();
+                    CopyData(data);
+                    Save();
+               }
+
+               Load(data.Id);
+               if (EOF)
+                    New();
+               CopyData(data);
+               Save();
+          }
+          public void Add(NewCompany data)
 		{
 			try
 			{

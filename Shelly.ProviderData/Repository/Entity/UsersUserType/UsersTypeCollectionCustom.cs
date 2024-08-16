@@ -2,9 +2,9 @@
 namespace Shelly.ProviderData.Repository.Entity
 {
 	/// <summary>
-	/// Class AzureKeyStoragesCollection  
+	/// Class UserTypeCollection  
 	/// </summary>
-	public partial class AzureKeyStoragesCollection
+	public partial class UsersTypeCollection
 	{
 		#region variables
 		#endregion

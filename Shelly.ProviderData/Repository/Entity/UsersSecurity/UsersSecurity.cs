@@ -1,12 +1,9 @@
-﻿using Shelly.Abstractions.Settings;
-using Shelly.ProviderData.Helper;
-
-namespace Shelly.ProviderData.Repository.Entity
+﻿namespace Shelly.ProviderData.Repository.Entity
 {
-    /// <summary>
-    /// Class UsersSecurity 
-    /// </summary>
-    [Serializable]
+     /// <summary>
+     /// Class UsersSecurity 
+     /// </summary>
+     [Serializable]
 	public partial class UsersSecurity : StaticEntity
 	{
 		#region Contructor

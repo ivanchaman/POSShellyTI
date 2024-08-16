@@ -1,10 +1,10 @@
 ﻿
-namespace Shelly.ProviderData.Repository.Entity
+namespace Shelly.POSProviderData.Repository.Entity
 {
-     /// <summary>
-     /// Class AzureKeyStorages 
-     /// </summary>
-     public partial class AzureKeyStorages
+	/// <summary>
+	/// Class SuppliersAddress 
+	/// </summary>
+	public partial class SuppliersAddress
 	{
 		#region Variables
 		#endregion
@@ -19,35 +19,35 @@ namespace Shelly.ProviderData.Repository.Entity
 		/// </summary>
 		protected override void CustomValidationForNewRegister()
 		{
-
+		
 		}
 		/// <summary>
 		/// Funcion pra personalizar el grabar en una los registros
 		/// </summary>
 		protected override void CustomValidationForNewPreWriteRegister()
 		{
-			Valildations();
+		       Valildations();
 		}
 		/// <summary>
 		/// Funcion para personalr para grabar los cambios en los registros
 		/// </summary>
 		protected override void CustomValidationForPreWriteChanges()
 		{
-			Valildations();
+		       Valildations();
 		}
 		/// <summary>
 		/// Funcion que valida los campos antes de eleimnar n registro
 		/// </summary>
 		protected override void CustomValidationForDeletePreWrite()
 		{
-			ValildationsDelete();
+		       ValildationsDelete();
 		}
 		/// <summary>
 		/// Loads the new custom values.
 		/// </summary>
 		protected override void LoadNewCustomValues()
 		{
-
+		
 		}
 		#endregion Prewrite validations
 		#region Postwrite
@@ -56,51 +56,60 @@ namespace Shelly.ProviderData.Repository.Entity
 		/// </summary>
 		protected override void CustomValidationForPostWrite()
 		{
-
+		
 		}
 		/// <summary>
 		/// Funcion para personalr para grabar los cambios en los registros
 		/// </summary>
 		protected override void CustomValidationForPosWriteChanges()
 		{
-
+		
 		}
 		/// <summary>
 		/// Funcion que valida los campos antes de eleimnar n registro
 		/// </summary>
 		protected override void CustomValidationForDeletePostWrite()
 		{
-
+		
 		}
 		#endregion Post write
 		#endregion
 		#region Functions
 
-		public void Valildations()
-		{
+		public void Valildations()		{
 		}
 
-		public void ValildationsDelete()
-		{
+		public void ValildationsDelete()		{
 		}
 
-          #endregion
-          public void Add(AzureKeyStorages data)
-          {
+		#endregion
+		#region Methods
 
-               if (data.Id == 0)
-               {
-                    New();
-                    CopyData(data);
-                    Save();
-               }
+		public void Add(SuppliersAddress data)
+		{
 
-               Load(data.Id);
-               if (EOF)
-                    New();
-               CopyData(data);
-               Save();
-          }
-      
+			if (data.SupplierId == 0 && data.Id == 0)
+			{
+				New();
+				CopyData(data);
+				Save();
+			}
+
+			Load(data.SupplierId, data.Id);
+			if (EOF)
+				New();
+			CopyData(data);
+			Save();
+		}
+
+		public void Delete(SuppliersAddress data)		{
+
+			 base.Load( data.SupplierId,data.Id); 
+			  if (EOF) 
+			      return; 
+			 base.Save(); 
+		}
+		#endregion
+
+		}
 	}
-}

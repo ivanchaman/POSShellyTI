@@ -1,13 +1,14 @@
 ﻿
 namespace Shelly.POSCore.GraphQL.InputTypes
 {
-	public class  MedicalClinicDoctorSchedulesInputType : InputObjectGraphType<DoctorSchedules>	{
-
-	public MedicalClinicDoctorSchedulesInputType()
+	public class MedicalClinicDoctorSchedulesInputType : InputObjectGraphType<DoctorSchedules>
 	{
 
-		Name = "MedicalClinicDoctorSchedulesInputType";
-		#region Fields
+		public MedicalClinicDoctorSchedulesInputType()
+		{
+
+			Name = "MedicalClinicDoctorSchedulesInputType";
+			#region Fields
 
 			Field(f => f.Id);
 			Field(f => f.Company);
@@ -17,8 +18,8 @@ namespace Shelly.POSCore.GraphQL.InputTypes
 			Field(f => f.EndTime);
 			Field(f => f.Status);
 			Field(f => f.CreatedAt);
-		#endregion
+			#endregion
 
-	}
+		}
 	}
 }

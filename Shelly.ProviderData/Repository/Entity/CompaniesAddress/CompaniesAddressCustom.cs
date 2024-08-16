@@ -1,12 +1,9 @@
-﻿using Shelly.ProviderData.GenericRepository;
-using Shelly.Abstractions.Settings;
-
-namespace Shelly.ProviderData.Repository.Entity
+﻿namespace Shelly.ProviderData.Repository.Entity
 {
-	/// <summary>
-	/// Class CompaniesAddress 
-	/// </summary>
-	public partial class CompaniesAddress
+     /// <summary>
+     /// Class CompaniesAddress 
+     /// </summary>
+     public partial class CompaniesAddress
 	{
 		#region Variables
 		#endregion
@@ -84,7 +81,22 @@ namespace Shelly.ProviderData.Repository.Entity
 		public void ValildationsDelete()		{
 		}
 
-		#endregion
+          #endregion
+          public void Add(CompaniesAddress data)
+          {
 
-		}
+               if (data.Id == 0)
+               {
+                    New();
+                    CopyData(data);
+                    Save();
+               }
+
+               Load(data.Id);
+               if (EOF)
+                    New();
+               CopyData(data);
+               Save();
+          }
+     }
 	}

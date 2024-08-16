@@ -1,10 +1,10 @@
 ﻿
-namespace Shelly.ProviderData.Repository.Entity
+namespace Shelly.POSProviderData.Repository.Entity
 {
 	/// <summary>
-	/// Class AzureKeyStoragesCollection  
+	/// Class SuppliersAddressCollection  
 	/// </summary>
-	public partial class AzureKeyStoragesCollection
+	public partial class SuppliersAddressCollection
 	{
 		#region variables
 		#endregion

@@ -1,5 +1,5 @@
 ﻿
-namespace Shelly.POSProviderData.Repository
+namespace Shelly.ProviderData.Repository.Entity
 {
 	public partial class AwsKeyStoragesCollection:StaticEntityCollection<AwsKeyStorages>
 	{
